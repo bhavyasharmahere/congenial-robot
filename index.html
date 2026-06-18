@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 11 JEE Roadmap Tracker</title>
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --primary: #4f46e5;
+            --primary-light: #e0e7ff;
+            --status-red: #ef4444;
+            --status-yellow: #eab308;
+            --status-green: #22c55e;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin-bottom: 50px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-top: 0;
+        }
+
+        /* Progress Dashboard */
+        .dashboard {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .progress-container {
+            background-color: var(--border-color);
+            border-radius: 50px;
+            height: 24px;
+            width: 100%;
+            overflow: hidden;
+            margin-top: 10px;
+            position: relative;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, #4f46e5, #06b6d4);
+            height: 100%;
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+
+        .progress-text {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            top: 2px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: var(--text-main);
+        }
+
+        /* Filter Tabs */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+        }
+
+        .tab-btn {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 10px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-muted);
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Chapter Table/List */
+        .phase-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .phase-title {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-top: 0;
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+
+        .chapter-row {
+            display: grid;
+            grid-template-columns: 120px 1fr 180px;
+            align-items: center;
+            padding: 12px 8px;
+            border-bottom: 1px solid var(--border-color);
+            gap: 15px;
+        }
+
+        .chapter-row:last-child {
+            border-bottom: none;
+        }
+
+        .subject-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .Physics { background-color: #fee2e2; color: #991b1b; }
+        .Chemistry { background-color: #fef9c3; color: #854d0e; }
+        .Maths { background-color: #e0f2fe; color: #0369a1; }
+
+        .chapter-name {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* Status Dropdown */
+        .status-select {
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-weight: 600;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            width: 100%;
+            outline: none;
+        }
+
+        .status-red { background-color: #fee2e2; color: var(--status-red); border-color: #fca5a5; }
+        .status-yellow { background-color: #fef9c3; color: #ca8a04; border-color: #fde047; }
+        .status-green { background-color: #dcfce7; color: var(--status-green); border-color: #86efac; }
+
+        @media (max-width: 600px) {
+            .chapter-row {
+                grid-template-columns: 1fr;
+                gap: 8px;
+                padding: 15px 5px;
+            }
+            .status-select {
+                width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Class 11 JEE Master Tracker</h1>
+        <p>Target Deadline: November 30</p>
+    </header>
+
+    <div class="dashboard">
+        <h3 style="margin-top:0; margin-bottom: 5px;">Overall Syllabus Mastered (Green)</h3>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+            <div class="progress-text" id="progressText">0% Completed</div>
+        </div>
+    </div>
+
+    <div class="tabs">
+        <button class="tab-btn active" onclick="filterPhase('all')">All Phases</button>
+        <button class="tab-btn" onclick="filterPhase(1)">Phase 1 (June-July)</button>
+        <button class="tab-btn" onclick="filterPhase(2)">Phase 2 (August)</button>
+        <button class="tab-btn" onclick="filterPhase(3)">Phase 3 (September)</button>
+        <button class="tab-btn" onclick="filterPhase(4)">Phase 4 (October)</button>
+        <button class="tab-btn" onclick="filterPhase(5)">Phase 5 (November)</button>
+    </div>
+
+    <div id="trackerContainer"></div>
+</div>
+
+<script>
+    // Complete Chapter Database matching your precise roadmap
+    const chaptersData = [
+        // PHASE 1
+        { id: 1, phase: 1, phaseName: "Phase 1: Fundamentals (June 21 - July 31)", subject: "Physics", name: "Units, Dimensions & Vectors" },
+        { id: 2, phase: 1, phaseName: "Phase 1: Fundamentals (June 21 - July 31)", subject: "Physics", name: "Motion in a Straight Line" },
+        { id: 3, phase: 1, phaseName: "Phase 1: Fundamentals (June 21 - July 31)", subject: "Physics", name: "Motion in a Plane (Projectile & Relative)" },
+        { id: 4, phase: 1, phaseName: "Phase 1: Fundamentals (June 21 - July 31)", subject: "Physics", name: "Laws of Motion & Friction" },
+        { id: 5, phase: 1, phaseName: "Phase 1: Fundamentals (June 21 - July 31)", subject: "Chemistry", name: "Some Basic Concepts of Chemistry (Mole Concept)" },
+        { id: 6, phase: 1, phaseName: "Phase 1: Fundamentals (June 21 - July 31)", subject: "Chemistry", name: "Structure of Atom" },
+        { id: 7, phase: 1, phaseName: "Phase 1: Fundamentals (June 21 - July 31)", subject: "Chemistry", name: "Classification of Elements & Periodicity" },
+        { id: 8, phase: 1, phaseName: "Phase 1: Fundamentals (June 21 - July 31)", subject: "Maths", name: "Sets, Relations & Functions + Logarithms" },
+        { id: 9, phase: 1, phaseName: "Phase 1: Fundamentals (June 21 - July 31)", subject: "Maths", name: "Quadratic Equations" },
+        { id: 10, phase: 1, phaseName: "Phase 1: Fundamentals (June 21 - July 31)", subject: "Maths", name: "Trigonometric Functions & Equations" },
+
+        // PHASE 2
+        { id: 11, phase: 2, phaseName: "Phase 2: Core Mechanics & Heavy Algebra (August)", subject: "Physics", name: "Work, Power & Energy" },
+        { id: 12, phase: 2, phaseName: "Phase 2: Core Mechanics & Heavy Algebra (August)", subject: "Physics", name: "Center of Mass, Momentum & Collisions" },
+        { id: 13, phase: 2, phaseName: "Phase 2: Core Mechanics & Heavy Algebra (August)", subject: "Physics", name: "Rotational Motion (Part 1: MOI & Torque)" },
+        { id: 14, phase: 2, phaseName: "Phase 2: Core Mechanics & Heavy Algebra (August)", subject: "Chemistry", name: "Chemical Bonding & Molecular Structure" },
+        { id: 15, phase: 2, phaseName: "Phase 2: Core Mechanics & Heavy Algebra (August)", subject: "Chemistry", name: "Chemical Thermodynamics" },
+        { id: 16, phase: 2, phaseName: "Phase 2: Core Mechanics & Heavy Algebra (August)", subject: "Chemistry", name: "Redox Reactions" },
+        { id: 17, phase: 2, phaseName: "Phase 2: Core Mechanics & Heavy Algebra (August)", subject: "Maths", name: "Complex Numbers" },
+        { id: 18, phase: 2, phaseName: "Phase 2: Core Mechanics & Heavy Algebra (August)", subject: "Maths", name: "Sequences & Series" },
+        { id: 19, phase: 2, phaseName: "Phase 2: Core Mechanics & Heavy Algebra (August)", subject: "Maths", name: "Linear Inequalities" },
+
+        // PHASE 3
+        { id: 20, phase: 3, phaseName: "Phase 3: Advanced Mechanics & Equilibriums (September)", subject: "Physics", name: "Rotational Motion (Part 2: Angular Momentum & Rolling)" },
+        { id: 21, phase: 3, phaseName: "Phase 3: Advanced Mechanics & Equilibriums (September)", subject: "Physics", name: "Gravitation" },
+        { id: 22, phase: 3, phaseName: "Phase 3: Advanced Mechanics & Equilibriums (September)", subject: "Physics", name: "Mechanical Properties of Solids & Fluids" },
+        { id: 23, phase: 3, phaseName: "Phase 3: Advanced Mechanics & Equilibriums (September)", subject: "Chemistry", name: "Chemical Equilibrium" },
+        { id: 24, phase: 3, phaseName: "Phase 3: Advanced Mechanics & Equilibriums (September)", subject: "Chemistry", name: "Ionic Equilibrium" },
+        { id: 25, phase: 3, phaseName: "Phase 3: Advanced Mechanics & Equilibriums (September)", subject: "Maths", name: "Permutations & Combinations (P&C)" },
+        { id: 26, phase: 3, phaseName: "Phase 3: Advanced Mechanics & Equilibriums (September)", subject: "Maths", name: "Binomial Theorem" },
+        { id: 27, phase: 3, phaseName: "Phase 3: Advanced Mechanics & Equilibriums (September)", subject: "Maths", name: "Straight Lines" },
+
+        // PHASE 4
+        { id: 28, phase: 4, phaseName: "Phase 4: Thermal Physics, Organic & Conics (October)", subject: "Physics", name: "Thermal Properties, KTG & Thermodynamics" },
+        { id: 29, phase: 4, phaseName: "Phase 4: Thermal Physics, Organic & Conics (October)", subject: "Physics", name: "Oscillations (SHM)" },
+        { id: 30, phase: 4, phaseName: "Phase 4: Thermal Physics, Organic & Conics (October)", subject: "Chemistry", name: "GOC (Nomenclature, Isomerism & Electronic Effects)" },
+        { id: 31, phase: 4, phaseName: "Phase 4: Thermal Physics, Organic & Conics (October)", subject: "Chemistry", name: "Hydrocarbons" },
+        { id: 32, phase: 4, phaseName: "Phase 4: Thermal Physics, Organic & Conics (October)", subject: "Maths", name: "Circles" },
+        { id: 33, phase: 4, phaseName: "Phase 4: Thermal Physics, Organic & Conics (October)", subject: "Maths", name: "Parabola" },
+        { id: 34, phase: 4, phaseName: "Phase 4: Thermal Physics, Organic & Conics (October)", subject: "Maths", name: "Ellipse & Hyperbola" },
+
+        // PHASE 5
+        { id: 35, phase: 5, phaseName: "Phase 5: Final Stretch & Cleanup (November)", subject: "Physics", name: "Waves (String, Sound & Doppler Effect)" },
+        { id: 36, phase: 5, phaseName: "Phase 5: Final Stretch & Cleanup (November)", subject: "Chemistry", name: "Principles of Practical Chemistry" },
+        { id: 37, phase: 5, phaseName: "Phase 5: Final Stretch & Cleanup (November)", subject: "Maths", name: "Limits & Derivatives" },
+        { id: 38, phase: 5, phaseName: "Phase 5: Final Stretch & Cleanup (November)", subject: "Maths", name: "Introduction to 3D Geometry" },
+        { id: 39, phase: 5, phaseName: "Phase 5: Final Stretch & Cleanup (November)", subject: "Maths", name: "Statistics & Probability" }
+    ];
+
+    // Load initial statuses from localStorage or default to 'red'
+    const userProgress = JSON.parse(localStorage.getItem('jee_progress')) || {};
+
+    function renderTracker(filter = 'all') {
+        const container = document.getElementById('trackerContainer');
+        container.innerHTML = '';
+
+        // Group by phase
+        const phases = {};
+        chaptersData.forEach(ch => {
+            if (filter !== 'all' && ch.phase !== parseInt(filter)) return;
+            if (!phases[ch.phase]) {
+                phases[ch.phase] = { name: ch.phaseName, chapters: [] };
+            }
+            phases[ch.phase].chapters.push(ch);
+        });
+
+        for (const phaseId in phases) {
+            const phase = phases[phaseId];
+            const section = document.createElement('div');
+            section.className = 'phase-section';
+            
+            let html = `<h2 class="phase-title">${phase.name}</h2>`;
+            
+            phase.chapters.forEach(ch => {
+                const currentStatus = userProgress[ch.id] || 'red';
+                html += `
+                    <div class="chapter-row">
+                        <div><span class="subject-badge ${ch.subject}">${ch.subject}</span></div>
+                        <div class="chapter-name">${ch.name}</div>
+                        <div>
+                            <select class="status-select status-${currentStatus}" onchange="updateStatus(${ch.id}, this)">
+                                <option value="red" ${currentStatus === 'red' ? 'selected' : ''}>🔴 Red (Weak/Theory Only)</option>
+                                <option value="yellow" ${currentStatus === 'yellow' ? 'selected' : ''}>🟡 Yellow (In Progress)</option>
+                                <option value="green" ${currentStatus === 'green' ? 'selected' : ''}>🟢 Green (Mastered/PYQs)</option>
+                            </select>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            section.innerHTML = html;
+            container.appendChild(section);
+        }
+        updateProgressBar();
+    }
+
+    function updateStatus(id, selectElement) {
+        const newStatus = selectElement.value;
+        userProgress[id] = newStatus;
+        
+        // Update styling class dynamically
+        selectElement.className = `status-select status-${newStatus}`;
+        
+        // Save to local storage
+        localStorage.setItem('jee_progress', JSON.stringify(userProgress));
+        updateProgressBar();
+    }
+
+    function updateProgressBar() {
+        const total = chaptersData.length;
+        let greenCount = 0;
+        
+        chaptersData.forEach(ch => {
+            if (userProgress[ch.id] === 'green') greenCount++;
+        });
+
+        const percentage = Math.round((greenCount / total) * 100);
+        document.getElementById('progressBar').style.width = percentage + '%';
+        document.getElementById('progressText').innerText = `${percentage}% Syllabus Mastered (${greenCount}/${total} Chapters)`;
+    }
+
+    function filterPhase(phase) {
+        // Handle active button state
+        const buttons = document.querySelectorAll('.tab-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+        
+        renderTracker(phase);
+    }
+
+    // Initial load
+    renderTracker();
+</script>
+
+</body>
+</html>
