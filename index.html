@@ -59,9 +59,9 @@
         /* Layout Grid for Sidebar & Content */
         .main-layout {
             display: grid;
-            grid-template-columns: 1fr 280px;
+            grid-template-columns: 1fr 320px;
             gap: 25px;
-            max-width: 1400px;
+            max-width: 1440px;
             margin: 0 auto;
         }
 
@@ -118,17 +118,25 @@
             background: var(--card-bg); border: 1px solid var(--border-color);
             border-radius: 12px; padding: 20px;
         }
-        .side-panel h3 { margin: 0 0 15px 0; font-size: 1.1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; }
+        .side-panel h3 { margin: 0 0 5px 0; font-size: 1.05rem; text-align: center;}
+        .side-panel p { margin: 0 0 15px 0; font-size: 0.8rem; text-align: center; color: var(--text-muted); font-weight: 500;}
         
-        /* Vertical Progress Meter Style */
-        .vertical-bars { display: flex; justify-content: space-around; align-items: flex-end; height: 160px; padding-top: 10px; }
-        .v-bar-wrapper { display: flex; flex-direction: column; align-items: center; height: 100%; justify-content: flex-end; width: 50px; }
-        .v-bar-container { background: var(--acc-bg); border: 1px solid var(--border-color); border-radius: 8px; width: 24px; height: 120px; position: relative; overflow: hidden; }
-        .v-bar-fill { position: absolute; bottom: 0; width: 100%; height: 0%; transition: height 0.4s ease; }
-        .v-bar-phy { background: #ef4444; }
-        .v-bar-che { background: #eab308; }
-        .v-bar-mat { background: #0ea5e9; }
-        .v-label { font-size: 0.75rem; font-weight: bold; margin-top: 8px; color: var(--text-muted); }
+        /* Side by Side Comparative Vertical Progress Layout */
+        .vertical-bars { display: flex; justify-content: space-between; align-items: flex-end; height: 180px; padding: 0 5px; }
+        .subject-group { display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 1; }
+        .bars-pair { display: flex; gap: 8px; align-items: flex-end; height: 130px; background: var(--acc-bg); padding: 8px 10px; border-radius: 8px; border: 1px solid var(--border-color); }
+        .v-bar-container { width: 14px; height: 100%; position: relative; border-radius: 4px; overflow: hidden; background: rgba(0,0,0,0.06); }
+        [data-theme="dim"] .v-bar-container, [data-theme="dark"] .v-bar-container { background: rgba(255,255,255,0.06); }
+        .v-bar-fill { position: absolute; bottom: 0; width: 100%; height: 0%; transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        
+        /* Theme Content Colorations */
+        .v-bar-on { background: #2563eb; } 
+        .v-bar-off { background: #ea580c; }
+        .v-label { font-size: 0.8rem; font-weight: 700; color: var(--text-main); margin-top: 4px; }
+        
+        .legend-box { display: flex; justify-content: center; gap: 15px; margin-top: 15px; font-size: 0.75rem; font-weight: 700; border-top: 1px solid var(--border-color); padding-top: 10px;}
+        .legend-item { display: flex; align-items: center; gap: 5px; }
+        .dot { width: 10px; height: 10px; border-radius: 3px; }
 
         /* Filters */
         .filter-section {
@@ -141,62 +149,70 @@
         .filter-btn {
             background: var(--acc-bg); border: 1px solid var(--border-color);
             padding: 8px 16px; border-radius: 20px; cursor: pointer;
-            color: var(--text-main); font-weight: 600; white-space: nowrap;
+            color: var(--text-main); font-weight: 600; white-space: nowrap; transition: all 0.2s;
         }
         .filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
 
         /* Chapter Cards */
-        .phase-title { font-size: 1.4rem; margin-top: 30px; margin-bottom: 15px; padding-bottom: 8px; border-bottom: 2px solid var(--border-color); }
-        .chapter-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; margin-bottom: 12px; overflow: hidden; }
+        .phase-title { font-size: 1.35rem; margin-top: 30px; margin-bottom: 15px; padding-bottom: 8px; border-bottom: 2px solid var(--border-color); }
+        .chapter-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; margin-bottom: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.02); }
         
         .chapter-header {
-            display: grid; grid-template-columns: 100px 100px 1fr auto; align-items: center; padding: 15px; cursor: pointer; gap: 15px;
+            display: grid; grid-template-columns: 100px 175px 1fr auto; align-items: center; padding: 14px 18px; cursor: pointer; gap: 20px;
         }
         .chapter-header:hover { background: var(--acc-bg); }
 
-        .subject-badge { display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 0.85rem; font-weight: bold; text-align: center; }
+        .subject-badge { display: inline-block; padding: 5px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; text-align: center; }
         .phy-badge { background: var(--sub-phy-bg); color: var(--sub-phy-text); }
         .che-badge { background: var(--sub-che-bg); color: var(--sub-che-text); }
         .mat-badge { background: var(--sub-mat-bg); color: var(--sub-mat-text); }
 
-        .chapter-title { font-weight: 600; font-size: 1rem; }
+        .chapter-title { font-weight: 600; font-size: 0.98rem; line-height: 1.4; }
         
         /* Interactive Control Layout groups */
-        .control-block { display: flex; gap: 15px; align-items: center; }
-        .status-group { display: flex; gap: 4px; }
+        .control-block { display: flex; gap: 6px; align-items: center; }
+        .status-group { display: flex; gap: 5px; }
         
+        /* Tactile Refined Buttons styling */
         .status-btn {
-            padding: 6px 10px; border: 1px solid var(--border-color);
+            padding: 7px 12px; border: 1px solid var(--border-color);
             border-radius: 6px; background: var(--card-bg);
             color: var(--text-muted); font-weight: 600; font-size: 0.8rem;
-            cursor: pointer; transition: all 0.2s;
+            cursor: pointer; transition: all 0.15s ease;
         }
+        .status-btn:hover { background: var(--acc-bg); transform: translateY(-1px); }
         
-        /* Highlight States */
-        .btn-red.active { background: #fee2e2; color: #dc2626; border-color: #fca5a5; }
-        .btn-yellow.active { background: #fef9c3; color: #d97706; border-color: #fde047; }
-        .btn-green.active { background: #dcfce7; color: #16a34a; border-color: #86efac; }
+        /* Enhanced Highlight States */
+        .btn-red.active { background: #fee2e2; color: #dc2626; border-color: #fca5a5; box-shadow: 0 2px 4px rgba(220,38,38,0.08); }
+        .btn-yellow.active { background: #fef9c3; color: #b45309; border-color: #fde047; box-shadow: 0 2px 4px rgba(180,83,9,0.08); }
+        .btn-green.active { background: #dcfce7; color: #15803d; border-color: #86efac; box-shadow: 0 2px 4px rgba(21,128,61,0.08); }
         
-        .btn-mode { padding: 6px 10px; font-size: 0.75rem; border-radius: 20px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-muted); cursor: pointer; font-weight: bold; }
-        .btn-mode.active-mode { background: var(--primary); color: white; border-color: var(--primary); }
+        .btn-mode { padding: 6px 12px; font-size: 0.78rem; border-radius: 6px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-muted); cursor: pointer; font-weight: 700; transition: all 0.15s ease; }
+        .btn-mode:hover { background: var(--acc-bg); transform: translateY(-1px); }
+        
+        .btn-mode.active-online { background: #e0f2fe; color: #0369a1; border-color: #7dd3fc; box-shadow: 0 2px 4px rgba(3,105,161,0.08); }
+        .btn-mode.active-offline { background: #ffedd5; color: #c2410c; border-color: #fdba74; box-shadow: 0 2px 4px rgba(194,65,12,0.08); }
 
-        [data-theme="dim"] .btn-red.active, [data-theme="dark"] .btn-red.active { background: #7f1d1d; color: #fca5a5; border-color: #dc2626; }
-        [data-theme="dim"] .btn-yellow.active, [data-theme="dark"] .btn-yellow.active { background: #713f12; color: #fde047; border-color: #d97706; }
-        [data-theme="dim"] .btn-green.active, [data-theme="dark"] .btn-green.active { background: #14532d; color: #86efac; border-color: #16a34a; }
+        [data-theme="dim"] .btn-red.active, [data-theme="dark"] .btn-red.active { background: #450a0a; color: #fca5a5; border-color: #dc2626; }
+        [data-theme="dim"] .btn-yellow.active, [data-theme="dark"] .btn-yellow.active { background: #422006; color: #fde047; border-color: #d97706; }
+        [data-theme="dim"] .btn-green.active, [data-theme="dark"] .btn-green.active { background: #064e3b; color: #86efac; border-color: #16a34a; }
+        
+        [data-theme="dim"] .btn-mode.active-online, [data-theme="dark"] .btn-mode.active-online { background: #0c4a6e; color: #bae6fd; border-color: #0284c7; }
+        [data-theme="dim"] .btn-mode.active-offline, [data-theme="dark"] .btn-mode.active-offline { background: #431407; color: #fed7aa; border-color: #ea580c; }
 
         /* Expandable Content */
-        .chapter-details { display: none; padding: 15px; background: var(--acc-bg); border-top: 1px solid var(--border-color); font-size: 0.95rem; line-height: 1.5; }
+        .chapter-details { display: none; padding: 15px 20px; background: var(--acc-bg); border-top: 1px solid var(--border-color); font-size: 0.95rem; line-height: 1.5; }
         .chapter-details.open { display: block; }
-        .detail-label { font-weight: 700; color: var(--primary); margin-bottom: 5px; display: block;}
+        .detail-label { font-weight: 700; color: var(--primary); margin-bottom: 4px; display: block;}
 
-        @media (max-width: 1024px) {
+        @media (max-width: 1120px) {
             .main-layout { grid-template-columns: 1fr; }
-            .sidebar { position: relative; top: 0; display: grid; grid-template-columns: 1fr 1fr; }
+            .sidebar { position: relative; top: 0; display: grid; grid-template-columns: 1fr; }
         }
-        @media (max-width: 768px) {
-            .chapter-header { grid-template-columns: 1fr; gap: 10px; }
-            .control-block { flex-direction: column; align-items: flex-start; gap: 8px; }
-            .sidebar { grid-template-columns: 1fr; }
+        @media (max-width: 850px) {
+            .chapter-header { grid-template-columns: 1fr; gap: 12px; padding: 15px; }
+            .control-block { flex-direction: row; }
+            .status-group { justify-content: flex-start; width: 100%; }
         }
     </style>
 </head>
@@ -251,20 +267,34 @@
 
     <div class="sidebar">
         <div class="side-panel">
-            <h3>Subject Progress (Mastered)</h3>
+            <h3>Taught Chapters Coverage</h3>
+            <p>Calculates track completion for lectures attended</p>
             <div class="vertical-bars">
-                <div class="v-bar-wrapper">
-                    <div class="v-bar-container"><div class="v-bar-fill v-bar-phy" id="v-bar-phy"></div></div>
+                <div class="subject-group">
+                    <div class="bars-pair">
+                        <div class="v-bar-container"><div class="v-bar-fill v-bar-on" id="v-bar-phy-on"></div></div>
+                        <div class="v-bar-container"><div class="v-bar-fill v-bar-off" id="v-bar-phy-off"></div></div>
+                    </div>
                     <span class="v-label">PHY</span>
                 </div>
-                <div class="v-bar-wrapper">
-                    <div class="v-bar-container"><div class="v-bar-fill v-bar-che" id="v-bar-che"></div></div>
+                <div class="subject-group">
+                    <div class="bars-pair">
+                        <div class="v-bar-container"><div class="v-bar-fill v-bar-on" id="v-bar-che-on"></div></div>
+                        <div class="v-bar-container"><div class="v-bar-fill v-bar-off" id="v-bar-che-off"></div></div>
+                    </div>
                     <span class="v-label">CHEM</span>
                 </div>
-                <div class="v-bar-wrapper">
-                    <div class="v-bar-container"><div class="v-bar-fill v-bar-mat" id="v-bar-mat"></div></div>
+                <div class="subject-group">
+                    <div class="bars-pair">
+                        <div class="v-bar-container"><div class="v-bar-fill v-bar-on" id="v-bar-mat-on"></div></div>
+                        <div class="v-bar-container"><div class="v-bar-fill v-bar-off" id="v-bar-mat-off"></div></div>
+                    </div>
                     <span class="v-label">MATH</span>
                 </div>
+            </div>
+            <div class="legend-box">
+                <div class="legend-item"><div class="dot v-bar-on"></div> Online</div>
+                <div class="legend-item"><div class="dot v-bar-off"></div> Offline</div>
             </div>
         </div>
     </div>
@@ -332,8 +362,8 @@
     let currentSub = 'All';
     let currentPhase = 'All';
     
-    // Core structural storage setup
-    let stateEngine = JSON.parse(localStorage.getItem('jee_state_engine')) || {};
+    // Core Engine Setup with tracking arrays
+    let stateEngine = JSON.parse(localStorage.getItem('jee_hybrid_framework_v2')) || {};
 
     function setTheme(theme) {
         document.documentElement.setAttribute('data-theme', theme);
@@ -366,34 +396,36 @@
         detailsDiv.classList.toggle('open');
     }
 
-    // Toggle logic for Status buttons (Deselectable)
+    // Completely deselectable status routine
     function toggleStatus(id, targetStatus, event) {
         event.stopPropagation();
-        if (!stateEngine[id]) stateEngine[id] = { status: 'none', delivery: 'none' };
+        if (!stateEngine[id]) stateEngine[id] = { status: 'none', online: false, offline: false };
         
         if (stateEngine[id].status === targetStatus) {
-            stateEngine[id].status = 'none'; // Deselect back to unstarted
+            stateEngine[id].status = 'none';
         } else {
             stateEngine[id].status = targetStatus;
         }
         saveAndSync();
     }
 
-    // Toggle logic for Delivery Channel buttons (Deselectable)
-    function toggleDelivery(id, targetDelivery, event) {
+    // Completely independent simultaneous toggles for learning method
+    function toggleOnline(id, event) {
         event.stopPropagation();
-        if (!stateEngine[id]) stateEngine[id] = { status: 'none', delivery: 'none' };
-        
-        if (stateEngine[id].delivery === targetDelivery) {
-            stateEngine[id].delivery = 'none';
-        } else {
-            stateEngine[id].delivery = targetDelivery;
-        }
+        if (!stateEngine[id]) stateEngine[id] = { status: 'none', online: false, offline: false };
+        stateEngine[id].online = !stateEngine[id].online;
+        saveAndSync();
+    }
+
+    function toggleOffline(id, event) {
+        event.stopPropagation();
+        if (!stateEngine[id]) stateEngine[id] = { status: 'none', online: false, offline: false };
+        stateEngine[id].offline = !stateEngine[id].offline;
         saveAndSync();
     }
 
     function saveAndSync() {
-        localStorage.setItem('jee_state_engine', JSON.stringify(stateEngine));
+        localStorage.setItem('jee_hybrid_framework_v2', JSON.stringify(stateEngine));
         render();
     }
 
@@ -424,15 +456,15 @@
             let phaseHtml = `<h2 class="phase-title">${phaseTitle}</h2>`;
             
             chapters.forEach(ch => {
-                const config = stateEngine[ch.id] || { status: 'none', delivery: 'none' };
+                const config = stateEngine[ch.id] || { status: 'none', online: false, offline: false };
                 
                 phaseHtml += `
                 <div class="chapter-card">
                     <div class="chapter-header" onclick="toggleExpand(${ch.id})">
                         <div class="subject-badge ${getBadgeClass(ch.subject)}">${ch.subject}</div>
                         <div class="control-block">
-                            <button class="btn-mode ${config.delivery === 'online' ? 'active-mode' : ''}" onclick="toggleDelivery(${ch.id}, 'online', event)">🌐 Online</button>
-                            <button class="btn-mode ${config.delivery === 'offline' ? 'active-mode' : ''}" onclick="toggleDelivery(${ch.id}, 'offline', event)">🏫 Offline</button>
+                            <button class="btn-mode ${config.online ? 'active-online' : ''}" onclick="toggleOnline(${ch.id}, event)">🌐 Online</button>
+                            <button class="btn-mode ${config.offline ? 'active-offline' : ''}" onclick="toggleOffline(${ch.id}, event)">🏫 Offline</button>
                         </div>
                         <div class="chapter-title">${ch.name}</div>
                         <div class="status-group">
@@ -458,27 +490,38 @@
         let grandGreen = 0;
 
         let subTotals = { Physics: 0, Chemistry: 0, Maths: 0 };
-        let subGreens = { Physics: 0, Chemistry: 0, Maths: 0 };
+        let subOnline = { Physics: 0, Chemistry: 0, Maths: 0 };
+        let subOffline = { Physics: 0, Chemistry: 0, Maths: 0 };
 
         database.forEach(ch => {
             subTotals[ch.subject]++;
-            const config = stateEngine[ch.id] || { status: 'none' };
-            if (config.status === 'green') {
-                grandGreen++;
-                subGreens[ch.subject]++;
-            }
+            const config = stateEngine[ch.id] || { status: 'none', online: false, offline: false };
+            
+            if (config.status === 'green') grandGreen++;
+            if (config.online) subOnline[ch.subject]++;
+            if (config.offline) subOffline[ch.subject]++;
         });
 
-        // Top Horizontal bar
+        // Top Horizontal bar update
         let percent = grandTotal > 0 ? Math.round((grandGreen / grandTotal) * 100) : 0;
         document.getElementById('progressBar').style.width = percent + '%';
         document.getElementById('progressText').innerText = `${percent}% Fully Mastered`;
         document.getElementById('statsText').innerText = `${grandGreen}/${grandTotal} Chapters`;
 
-        // Side Vertical Bars
-        document.getElementById('v-bar-phy').style.height = subTotals.Physics > 0 ? (subGreens.Physics / subTotals.Physics) * 100 + '%' : '0%';
-        document.getElementById('v-bar-che').style.height = subTotals.Chemistry > 0 ? (subGreens.Chemistry / subTotals.Chemistry) * 100 + '%' : '0%';
-        document.getElementById('v-bar-mat').style.height = subTotals.Maths > 0 ? (subGreens.Maths / subTotals.Maths) * 100 + '%' : '0%';
+        // Side Vertical Dual-Bars updates
+        const subjects = ['Physics', 'Chemistry', 'Maths'];
+        const elements = { 'Physics': 'phy', 'Chemistry': 'che', 'Maths': 'mat' };
+        
+        subjects.forEach(sub => {
+            let total = subTotals[sub] || 1;
+            let el = elements[sub];
+            
+            let onPercent = Math.round((subOnline[sub] / total) * 100);
+            let offPercent = Math.round((subOffline[sub] / total) * 100);
+            
+            document.getElementById(`v-bar-${el}-on`).style.height = onPercent + '%';
+            document.getElementById(`v-bar-${el}-off`).style.height = offPercent + '%';
+        });
     }
 
     initTheme();
