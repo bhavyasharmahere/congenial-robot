@@ -3,95 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Workspace Tracker</title>
+    <title>Premium Workspace Hub</title>
     <style>
         :root {
-            --bg: #f6f8fa;
+            --bg: #f8fafc;
             --card-bg: #ffffff;
-            --primary: #6366f1;
-            --primary-light: #eef2ff;
-            --primary-dark: #4f46e5;
+            --primary: #4f46e5;
+            --primary-glow: rgba(79, 70, 229, 0.15);
             --text-main: #0f172a;
             --text-muted: #64748b;
             --border: #e2e8f0;
-            --border-hover: #cbd5e1;
             --success: #10b981;
             --danger: #ef4444;
-            --danger-light: #fef2f2;
-            --shadow-sm: 0 2px 8px rgba(99, 102, 241, 0.04);
-            --shadow-md: 0 12px 34px rgba(99, 102, 241, 0.06);
-            --radius: 16px;
-            --transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            --radius-lg: 20px;
+            --radius-md: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            -webkit-font-smoothing: antialiased;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
         }
 
         body {
-            background: radial-gradient(circle at top right, #f1f5f9 0%, #f8fafc 100%);
+            background: linear-gradient(135deg, #f1f5f9 0%, #f8fafc 100%);
             color: var(--text-main);
             display: flex;
             justify-content: center;
-            padding: 4rem 2rem;
+            align-items: center;
+            padding: 3rem 1.5rem;
             min-height: 100vh;
         }
 
         .container {
-            background-color: var(--card-bg);
+            background: var(--card-bg);
             width: 100%;
-            max-width: 850px;
-            border-radius: 24px;
-            box-shadow: var(--shadow-md);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            padding: 3rem;
-            backdrop-filter: blur(20px);
-            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            max-width: 800px;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            padding: 2.5rem;
+            animation: fadeIn 0.5s ease-out;
         }
 
         h1 {
-            font-size: 2.25rem;
+            font-size: 2.5rem;
             font-weight: 800;
-            letter-spacing: -0.03em;
+            letter-spacing: -0.04em;
             margin-bottom: 2rem;
-            background: linear-gradient(to right, #4f46e5, #06b6d4);
+            background: linear-gradient(to right, #4f46e5, #3b82f6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-align: center;
         }
 
-        /* Expensive Form UI */
+        /* Modern Input Console */
         .task-form {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr auto;
+            grid-template-columns: 2fr 1fr 1.2fr auto;
             gap: 12px;
-            margin-bottom: 2.5rem;
-            background: #f8fafc;
-            padding: 12px;
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+            background: #f1f5f9;
+            padding: 8px;
+            border-radius: var(--radius-md);
         }
 
         input, select, button {
             padding: 12px 16px;
             border: 1px solid transparent;
-            border-radius: 12px;
+            border-radius: 10px;
             font-size: 0.95rem;
             outline: none;
             background: var(--card-bg);
             color: var(--text-main);
             transition: var(--transition);
-            box-shadow: var(--shadow-sm);
         }
 
         input:focus, select:focus {
+            box-shadow: 0 0 0 3px var(--primary-glow);
             border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
-            background: var(--card-bg);
         }
 
         input::placeholder {
@@ -99,21 +91,20 @@
         }
 
         button.btn-submit {
-            background-color: var(--text-main);
+            background: var(--primary);
             color: white;
-            border: none;
-            cursor: pointer;
             font-weight: 600;
+            cursor: pointer;
             padding: 12px 24px;
         }
 
         button.btn-submit:hover {
-            background-color: var(--primary);
+            background: #4338ca;
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
         }
 
-        /* Controls & Filters Layout */
+        /* Filter Controls */
         .filters {
             display: flex;
             justify-content: space-between;
@@ -130,22 +121,22 @@
         }
 
         .filter-group label {
-            font-size: 0.85rem;
-            font-weight: 600;
+            font-size: 0.8rem;
+            font-weight: 700;
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
 
         .filter-group select {
-            padding: 8px 12px;
-            font-size: 0.9rem;
-            background: #f1f5f9;
-            border: none;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            background: transparent;
+            border: 1px solid var(--border);
             cursor: pointer;
         }
 
-        /* Dynamic Task List Items */
+        /* Luxury Task Container */
         .task-list {
             list-style: none;
             display: flex;
@@ -159,19 +150,19 @@
             justify-content: space-between;
             padding: 1.25rem;
             border: 1px solid var(--border);
-            border-radius: var(--radius);
+            border-radius: var(--radius-md);
             background: var(--card-bg);
             transition: var(--transition);
-            animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+            animation: slideUp 0.4s ease-out both;
         }
 
         .task-item:hover {
-            border-color: var(--border-hover);
-            transform: translateY(-2px) scale(1.01);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
+            border-color: #cbd5e1;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.02);
         }
 
-        /* Animated Custom Luxury Checkbox */
+        /* Micro-Animated Premium Checkbox */
         .checkbox-wrapper {
             position: relative;
             display: flex;
@@ -202,13 +193,12 @@
 
         .checkbox-wrapper:hover .custom-checkmark {
             border-color: var(--primary);
-            background: var(--primary-light);
         }
 
         .checkbox-wrapper input:checked ~ .custom-checkmark {
             background-color: var(--success);
             border-color: var(--success);
-            animation: pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: scale(1.05);
         }
 
         .custom-checkmark:after {
@@ -226,7 +216,7 @@
             display: block;
         }
 
-        /* Task Content States */
+        /* Info Block & Editable States */
         .task-info {
             display: flex;
             flex-direction: column;
@@ -234,7 +224,6 @@
             flex-grow: 1;
         }
 
-        /* Elegant Inline Editable Inputs */
         .editable-text {
             font-size: 1.05rem;
             font-weight: 600;
@@ -242,8 +231,8 @@
             border: 1px solid transparent;
             padding: 2px 6px;
             border-radius: 6px;
-            transition: var(--transition);
             width: fit-content;
+            transition: var(--transition);
         }
 
         .editable-text:hover {
@@ -254,7 +243,7 @@
         .editable-text:focus {
             background: #ffffff;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+            box-shadow: 0 0 0 3px var(--primary-glow);
             outline: none;
         }
 
@@ -264,17 +253,20 @@
             gap: 12px;
         }
 
-        /* Expensive Looking Badges */
         .badge {
-            background: var(--primary-light);
+            background: #eef2ff;
             color: var(--primary);
             padding: 4px 10px;
-            border-radius: 8px;
+            border-radius: 6px;
             font-weight: 600;
             font-size: 0.75rem;
-            letter-spacing: 0.02em;
             text-transform: capitalize;
-            border: 1px solid rgba(99, 102, 241, 0.08);
+            transition: var(--transition);
+        }
+
+        .badge:hover {
+            background: #e0e7ff;
+            cursor: pointer;
         }
 
         .editable-date {
@@ -284,12 +276,13 @@
             background: transparent;
             cursor: pointer;
             font-weight: 500;
+            padding: 2px;
         }
 
-        /* Completed State Animations */
+        /* Completed Layout Styling */
         .task-item.completed {
-            border-color: #f1f5f9;
             background: #f8fafc;
+            border-color: #f1f5f9;
         }
 
         .task-item.completed .editable-text {
@@ -299,50 +292,40 @@
         }
 
         .task-item.completed .badge {
-            background: #f1f5f9;
+            background: #e2e8f0;
             color: var(--text-muted);
-            border-color: transparent;
         }
 
-        /* Action Buttons */
         .delete-btn {
-            background-color: transparent;
+            background: transparent;
             color: #94a3b8;
             border: none;
             padding: 8px 12px;
             font-size: 0.85rem;
             font-weight: 600;
             cursor: pointer;
-            box-shadow: none;
         }
 
         .delete-btn:hover {
             color: var(--danger);
-            background: var(--danger-light);
+            background: #fef2f2;
             border-radius: 8px;
         }
 
-        /* Core Premium Animations */
+        /* Animations */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes slideUp {
-            from { opacity: 0; transform: translateY(12px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes pop {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.15); }
-            100% { transform: scale(1); }
-        }
-
-        /* Responsive */
         @media (max-width: 680px) {
-            .task-form { grid-template-columns: 1fr; padding: 16px; }
-            body { padding: 1.5rem 1rem; }
+            .task-form { grid-template-columns: 1fr; padding: 12px; }
+            body { padding: 1rem; }
             .container { padding: 1.5rem; }
             .filters { flex-direction: column; gap: 12px; align-items: flex-start; }
         }
@@ -381,7 +364,13 @@
     </div>
 
     <script>
-        let tasks = JSON.parse(localStorage.getItem('lux_tasks')) || [];
+        // Default luxury dummy data so the app doesn't load empty
+        let defaultTasks = [
+            { id: 1, name: "Click here directly to edit this title live", subject: "Design", date: "2026-07-10", completed: false },
+            { id: 2, name: "Review structural system layouts", subject: "Engineering", date: "2026-07-15", completed: true }
+        ];
+
+        let tasks = JSON.parse(localStorage.getItem('lux_tasks')) || defaultTasks;
 
         const taskForm = document.getElementById('taskForm');
         const taskList = document.getElementById('taskList');
@@ -389,7 +378,6 @@
         const subjectFilter = document.getElementById('subjectFilter');
 
         function init() {
-            // Set today's date automatically in the input layout
             document.getElementById('taskDate').valueAsDate = new Date();
             updateSubjectDropdown();
             renderTasks();
@@ -419,14 +407,13 @@
                 task.id === id ? { ...task, completed: !task.completed } : task
             );
             saveData();
-            setTimeout(renderTasks, 250); // Small fluid delay to let check animation finish
+            setTimeout(renderTasks, 200); 
         }
 
-        // Live Inline Editing Processor
         function updateTaskField(id, field, value) {
             tasks = tasks.map(task => {
                 if (task.id === id) {
-                    let updatedValue = value.trim() || task[field]; // Keep old value if turned blank
+                    let updatedValue = value.trim() || task[field];
                     return { ...task, [field]: updatedValue };
                 }
                 return task;
@@ -439,15 +426,17 @@
 
         function deleteTask(id) {
             const itemElement = document.getElementById(`item-${id}`);
-            itemElement.style.opacity = '0';
-            itemElement.style.transform = 'scale(0.9) translateY(10px)';
+            if(itemElement) {
+                itemElement.style.opacity = '0';
+                itemElement.style.transform = 'translateX(30px)';
+            }
             
             setTimeout(() => {
                 tasks = tasks.filter(task => task.id !== id);
                 saveData();
                 updateSubjectDropdown();
                 renderTasks();
-            }, 300);
+            }, 250);
         }
 
         function updateSubjectDropdown() {
@@ -471,7 +460,6 @@
             const currentStatus = statusFilter.value;
             const currentSubject = subjectFilter.value;
 
-            // Fluid sorting by date tracking
             let filteredTasks = tasks.sort((a, b) => new Date(a.date) - new Date(b.date));
 
             if (currentStatus === 'completed') filteredTasks = filteredTasks.filter(t => t.completed);
@@ -484,7 +472,7 @@
                 const li = document.createElement('li');
                 li.className = `task-item ${task.completed ? 'completed' : ''}`;
                 li.id = `item-${task.id}`;
-                li.style.animationDelay = `${index * 0.05}s`; // Luxury staggered load look
+                li.style.animationDelay = `${index * 0.04}s`;
                 
                 li.innerHTML = `
                     <div class="checkbox-wrapper">
@@ -492,10 +480,10 @@
                         <span class="custom-checkmark" onclick="this.previousElementSibling.click()"></span>
                     </div>
                     <div class="task-info">
-                        <div class="editable-text" contenteditable="true" onblur="updateTaskField(${task.id}, 'name', this.innerText)" onkeydown="if(event.key === 'Enter'){event.preventDefault(); this.blur();}">\${task.name}</div>
+                        <div class="editable-text" contenteditable="true" onblur="updateTaskField(${task.id}, 'name', this.innerText)" onkeydown="if(event.key === 'Enter'){event.preventDefault(); this.blur();}">${task.name}</div>
                         <div class="task-meta">
-                            <span class="badge" contenteditable="true" onblur="updateTaskField(${task.id}, 'subject', this.innerText)" onkeydown="if(event.key === 'Enter'){event.preventDefault(); this.blur();}">\${task.subject}</span>
-                            <input type="date" class="editable-date" value="\${task.date}" onchange="updateTaskField(${task.id}, 'date', this.value)">
+                            <span class="badge" contenteditable="true" onblur="updateTaskField(${task.id}, 'subject', this.innerText)" onkeydown="if(event.key === 'Enter'){event.preventDefault(); this.blur();}">${task.subject}</span>
+                            <input type="date" class="editable-date" value="${task.date}" onchange="updateTaskField(${task.id}, 'date', this.value)">
                         </div>
                     </div>
                     <button class="delete-btn" onclick="deleteTask(${task.id})">Remove</button>
