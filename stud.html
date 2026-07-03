@@ -3,241 +3,398 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Task Tracker</title>
+    <title>Premium Workspace Tracker</title>
     <style>
         :root {
-            --bg-color: #f4f7f6;
-            --container-bg: #ffffff;
-            --primary: #4361ee;
-            --primary-hover: #3a53d0;
-            --text-main: #333333;
-            --text-muted: #777777;
-            --border: #e0e0e0;
-            --success: #2ecc71;
-            --danger: #e74c3c;
+            --bg: #f6f8fa;
+            --card-bg: #ffffff;
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --primary-dark: #4f46e5;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --border-hover: #cbd5e1;
+            --success: #10b981;
+            --danger: #ef4444;
+            --danger-light: #fef2f2;
+            --shadow-sm: 0 2px 8px rgba(99, 102, 241, 0.04);
+            --shadow-md: 0 12px 34px rgba(99, 102, 241, 0.06);
+            --radius: 16px;
+            --transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
         }
 
         body {
-            background-color: var(--bg-color);
+            background: radial-gradient(circle at top right, #f1f5f9 0%, #f8fafc 100%);
             color: var(--text-main);
             display: flex;
             justify-content: center;
-            padding: 2rem;
+            padding: 4rem 2rem;
             min-height: 100vh;
         }
 
         .container {
-            background-color: var(--container-bg);
+            background-color: var(--card-bg);
             width: 100%;
-            max-width: 800px;
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.05);
-            padding: 2rem;
+            max-width: 850px;
+            border-radius: 24px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            padding: 3rem;
+            backdrop-filter: blur(20px);
+            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 2rem;
+            background: linear-gradient(to right, #4f46e5, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             text-align: center;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
         }
 
-        /* Form UI */
+        /* Expensive Form UI */
         .task-form {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr auto;
-            gap: 10px;
-            margin-bottom: 2rem;
+            gap: 12px;
+            margin-bottom: 2.5rem;
+            background: #f8fafc;
+            padding: 12px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
         }
 
         input, select, button {
-            padding: 10px 14px;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            font-size: 1rem;
+            padding: 12px 16px;
+            border: 1px solid transparent;
+            border-radius: 12px;
+            font-size: 0.95rem;
             outline: none;
-            transition: border 0.2s;
+            background: var(--card-bg);
+            color: var(--text-main);
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
         }
 
         input:focus, select:focus {
             border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+            background: var(--card-bg);
         }
 
-        button {
-            background-color: var(--primary);
+        input::placeholder {
+            color: #94a3b8;
+        }
+
+        button.btn-submit {
+            background-color: var(--text-main);
             color: white;
             border: none;
             cursor: pointer;
-            font-weight: bold;
-            transition: background 0.2s;
+            font-weight: 600;
+            padding: 12px 24px;
         }
 
-        button:hover {
-            background-color: var(--primary-hover);
+        button.btn-submit:hover {
+            background-color: var(--primary);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
         }
 
-        /* Filter UI */
+        /* Controls & Filters Layout */
         .filters {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             padding-bottom: 1rem;
             border-bottom: 1px solid var(--border);
         }
 
-        .filter-group select {
-            margin-left: 10px;
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        /* Task List UI */
+        .filter-group label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .filter-group select {
+            padding: 8px 12px;
+            font-size: 0.9rem;
+            background: #f1f5f9;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Dynamic Task List Items */
         .task-list {
             list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
         .task-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 1rem;
+            padding: 1.25rem;
             border: 1px solid var(--border);
-            border-radius: 8px;
-            margin-bottom: 10px;
-            transition: all 0.2s;
-            background: #fafafa;
+            border-radius: var(--radius);
+            background: var(--card-bg);
+            transition: var(--transition);
+            animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
         }
 
         .task-item:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            transform: translateY(-2px);
+            border-color: var(--border-hover);
+            transform: translateY(-2px) scale(1.01);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
         }
 
-        .task-item.completed {
-            opacity: 0.6;
+        /* Animated Custom Luxury Checkbox */
+        .checkbox-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin-right: 16px;
         }
 
-        .task-item.completed .task-name {
-            text-decoration: line-through;
-            color: var(--text-muted);
+        .checkbox-wrapper input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
         }
 
+        .custom-checkmark {
+            height: 24px;
+            width: 24px;
+            background-color: transparent;
+            border: 2px solid #cbd5e1;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .checkbox-wrapper:hover .custom-checkmark {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .checkbox-wrapper input:checked ~ .custom-checkmark {
+            background-color: var(--success);
+            border-color: var(--success);
+            animation: pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .custom-checkmark:after {
+            content: "";
+            display: none;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+            margin-bottom: 2px;
+        }
+
+        .checkbox-wrapper input:checked ~ .custom-checkmark:after {
+            display: block;
+        }
+
+        /* Task Content States */
         .task-info {
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 6px;
             flex-grow: 1;
-            margin: 0 15px;
         }
 
-        .task-name {
-            font-size: 1.1rem;
-            font-weight: 500;
+        /* Elegant Inline Editable Inputs */
+        .editable-text {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-main);
+            border: 1px solid transparent;
+            padding: 2px 6px;
+            border-radius: 6px;
+            transition: var(--transition);
+            width: fit-content;
         }
 
-        .task-meta {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            display: flex;
-            gap: 15px;
-        }
-
-        .badge {
-            background: #e0e7ff;
-            color: var(--primary);
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-weight: bold;
-            font-size: 0.8rem;
-        }
-
-        /* Checkbox & Delete UI */
-        .checkbox-container {
-            display: flex;
-            align-items: center;
+        .editable-text:hover {
+            background: #f1f5f9;
             cursor: pointer;
         }
 
+        .editable-text:focus {
+            background: #ffffff;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+            outline: none;
+        }
+
+        .task-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Expensive Looking Badges */
+        .badge {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.75rem;
+            letter-spacing: 0.02em;
+            text-transform: capitalize;
+            border: 1px solid rgba(99, 102, 241, 0.08);
+        }
+
+        .editable-date {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        /* Completed State Animations */
+        .task-item.completed {
+            border-color: #f1f5f9;
+            background: #f8fafc;
+        }
+
+        .task-item.completed .editable-text {
+            text-decoration: line-through;
+            color: var(--text-muted);
+            opacity: 0.6;
+        }
+
+        .task-item.completed .badge {
+            background: #f1f5f9;
+            color: var(--text-muted);
+            border-color: transparent;
+        }
+
+        /* Action Buttons */
         .delete-btn {
             background-color: transparent;
-            color: var(--danger);
-            border: 1px solid var(--danger);
-            padding: 6px 10px;
+            color: #94a3b8;
+            border: none;
+            padding: 8px 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: none;
         }
 
         .delete-btn:hover {
-            background-color: var(--danger);
-            color: white;
+            color: var(--danger);
+            background: var(--danger-light);
+            border-radius: 8px;
         }
 
-        /* Responsive Design */
-        @media (max-width: 600px) {
-            .task-form {
-                grid-template-columns: 1fr;
-            }
-            .filters {
-                flex-direction: column;
-                gap: 10px;
-                align-items: flex-start;
-            }
+        /* Core Premium Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        /* Responsive */
+        @media (max-width: 680px) {
+            .task-form { grid-template-columns: 1fr; padding: 16px; }
+            body { padding: 1.5rem 1rem; }
+            .container { padding: 1.5rem; }
+            .filters { flex-direction: column; gap: 12px; align-items: flex-start; }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>Smart Task Tracker</h1>
+        <h1>Workspace Hub</h1>
 
         <form class="task-form" id="taskForm">
-            <input type="text" id="taskName" placeholder="What needs to be done?" required>
-            <input type="text" id="taskSubject" placeholder="Subject/Topic" required>
+            <input type="text" id="taskName" placeholder="Create new target..." required>
+            <input type="text" id="taskSubject" placeholder="Subject / Track" required>
             <input type="date" id="taskDate" required>
-            <button type="submit">Add Task</button>
+            <button type="submit" class="btn-submit">Launch</button>
         </form>
 
         <div class="filters">
             <div class="filter-group">
-                <label for="statusFilter"><strong>Status:</strong></label>
+                <label for="statusFilter">Status</label>
                 <select id="statusFilter">
-                    <option value="all">All</option>
-                    <option value="pending">Pending</option>
+                    <option value="all">All Targets</option>
+                    <option value="pending">Pending Only</option>
                     <option value="completed">Completed</option>
                 </select>
             </div>
             <div class="filter-group">
-                <label for="subjectFilter"><strong>Subject:</strong></label>
+                <label for="subjectFilter">Track</label>
                 <select id="subjectFilter">
                     <option value="all">All Subjects</option>
-                    </select>
+                </select>
             </div>
         </div>
 
-        <ul class="task-list" id="taskList">
-            </ul>
+        <ul class="task-list" id="taskList"></ul>
     </div>
 
     <script>
-        // State management
-        let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        let tasks = JSON.parse(localStorage.getItem('lux_tasks')) || [];
 
-        // DOM Elements
         const taskForm = document.getElementById('taskForm');
         const taskList = document.getElementById('taskList');
         const statusFilter = document.getElementById('statusFilter');
         const subjectFilter = document.getElementById('subjectFilter');
 
-        // Initialize App
         function init() {
+            // Set today's date automatically in the input layout
+            document.getElementById('taskDate').valueAsDate = new Date();
             updateSubjectDropdown();
             renderTasks();
         }
 
-        // Add New Task
         taskForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -252,32 +409,51 @@
             tasks.push(newTask);
             saveData();
             taskForm.reset();
+            document.getElementById('taskDate').valueAsDate = new Date();
             updateSubjectDropdown();
             renderTasks();
         });
 
-        // Toggle Task Completion
         function toggleTask(id) {
             tasks = tasks.map(task => 
                 task.id === id ? { ...task, completed: !task.completed } : task
             );
             saveData();
-            renderTasks();
+            setTimeout(renderTasks, 250); // Small fluid delay to let check animation finish
         }
 
-        // Delete Task
-        function deleteTask(id) {
-            tasks = tasks.filter(task => task.id !== id);
+        // Live Inline Editing Processor
+        function updateTaskField(id, field, value) {
+            tasks = tasks.map(task => {
+                if (task.id === id) {
+                    let updatedValue = value.trim() || task[field]; // Keep old value if turned blank
+                    return { ...task, [field]: updatedValue };
+                }
+                return task;
+            });
             saveData();
-            updateSubjectDropdown();
-            renderTasks();
+            if (field === 'subject') {
+                updateSubjectDropdown();
+            }
         }
 
-        // Update Dynamic Subject Filter
-        function updateSubjectDropdown() {
-            const subjects = [...new Set(tasks.map(task => task.subject))];
+        function deleteTask(id) {
+            const itemElement = document.getElementById(`item-${id}`);
+            itemElement.style.opacity = '0';
+            itemElement.style.transform = 'scale(0.9) translateY(10px)';
             
-            // Keep the "All" option and add unique subjects
+            setTimeout(() => {
+                tasks = tasks.filter(task => task.id !== id);
+                saveData();
+                updateSubjectDropdown();
+                renderTasks();
+            }, 300);
+        }
+
+        function updateSubjectDropdown() {
+            const currentSelected = subjectFilter.value;
+            const subjects = [...new Set(tasks.map(task => task.subject.toLowerCase()))];
+            
             subjectFilter.innerHTML = '<option value="all">All Subjects</option>';
             subjects.forEach(subject => {
                 const option = document.createElement('option');
@@ -285,61 +461,56 @@
                 option.textContent = subject;
                 subjectFilter.appendChild(option);
             });
+
+            if (subjects.includes(currentSelected)) {
+                subjectFilter.value = currentSelected;
+            }
         }
 
-        // Render Tasks to DOM
         function renderTasks() {
             const currentStatus = statusFilter.value;
             const currentSubject = subjectFilter.value;
 
-            // Sort by date closest first
+            // Fluid sorting by date tracking
             let filteredTasks = tasks.sort((a, b) => new Date(a.date) - new Date(b.date));
 
-            // Apply Status Filter
-            if (currentStatus === 'completed') {
-                filteredTasks = filteredTasks.filter(t => t.completed);
-            } else if (currentStatus === 'pending') {
-                filteredTasks = filteredTasks.filter(t => !t.completed);
-            }
+            if (currentStatus === 'completed') filteredTasks = filteredTasks.filter(t => t.completed);
+            if (currentStatus === 'pending') filteredTasks = filteredTasks.filter(t => !t.completed);
+            if (currentSubject !== 'all') filteredTasks = filteredTasks.filter(t => t.subject.toLowerCase() === currentSubject);
 
-            // Apply Subject Filter
-            if (currentSubject !== 'all') {
-                filteredTasks = filteredTasks.filter(t => t.subject === currentSubject);
-            }
-
-            // Generate HTML
             taskList.innerHTML = '';
-            filteredTasks.forEach(task => {
+            
+            filteredTasks.forEach((task, index) => {
                 const li = document.createElement('li');
                 li.className = `task-item ${task.completed ? 'completed' : ''}`;
+                li.id = `item-${task.id}`;
+                li.style.animationDelay = `${index * 0.05}s`; // Luxury staggered load look
                 
                 li.innerHTML = `
-                    <div class="checkbox-container">
-                        <input type="checkbox" ${task.completed ? 'checked' : ''} onchange="toggleTask(${task.id})" style="transform: scale(1.5);">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" ${task.completed ? 'checked' : ''} onchange="toggleTask(${task.id})">
+                        <span class="custom-checkmark" onclick="this.previousElementSibling.click()"></span>
                     </div>
                     <div class="task-info">
-                        <div class="task-name">${task.name}</div>
+                        <div class="editable-text" contenteditable="true" onblur="updateTaskField(${task.id}, 'name', this.innerText)" onkeydown="if(event.key === 'Enter'){event.preventDefault(); this.blur();}">\${task.name}</div>
                         <div class="task-meta">
-                            <span class="badge">${task.subject}</span>
-                            <span>📅 ${task.date}</span>
+                            <span class="badge" contenteditable="true" onblur="updateTaskField(${task.id}, 'subject', this.innerText)" onkeydown="if(event.key === 'Enter'){event.preventDefault(); this.blur();}">\${task.subject}</span>
+                            <input type="date" class="editable-date" value="\${task.date}" onchange="updateTaskField(${task.id}, 'date', this.value)">
                         </div>
                     </div>
-                    <button class="delete-btn" onclick="deleteTask(${task.id})">Delete</button>
+                    <button class="delete-btn" onclick="deleteTask(${task.id})">Remove</button>
                 `;
                 taskList.appendChild(li);
             });
         }
 
-        // Event Listeners for Filters
         statusFilter.addEventListener('change', renderTasks);
         subjectFilter.addEventListener('change', renderTasks);
 
-        // Save to LocalStorage
         function saveData() {
-            localStorage.setItem('tasks', JSON.stringify(tasks));
+            localStorage.setItem('lux_tasks', JSON.stringify(tasks));
         }
 
-        // Run on load
         init();
     </script>
 </body>
