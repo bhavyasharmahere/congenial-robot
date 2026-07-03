@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Task Tracker</title>
+    <style>
+        :root {
+            --bg-color: #f4f7f6;
+            --container-bg: #ffffff;
+            --primary: #4361ee;
+            --primary-hover: #3a53d0;
+            --text-main: #333333;
+            --text-muted: #777777;
+            --border: #e0e0e0;
+            --success: #2ecc71;
+            --danger: #e74c3c;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: var(--container-bg);
+            width: 100%;
+            max-width: 800px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+            padding: 2rem;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        /* Form UI */
+        .task-form {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr auto;
+            gap: 10px;
+            margin-bottom: 2rem;
+        }
+
+        input, select, button {
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 1rem;
+            outline: none;
+            transition: border 0.2s;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--primary);
+        }
+
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        /* Filter UI */
+        .filters {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .filter-group select {
+            margin-left: 10px;
+        }
+
+        /* Task List UI */
+        .task-list {
+            list-style: none;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            transition: all 0.2s;
+            background: #fafafa;
+        }
+
+        .task-item:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transform: translateY(-2px);
+        }
+
+        .task-item.completed {
+            opacity: 0.6;
+        }
+
+        .task-item.completed .task-name {
+            text-decoration: line-through;
+            color: var(--text-muted);
+        }
+
+        .task-info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            flex-grow: 1;
+            margin: 0 15px;
+        }
+
+        .task-name {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .task-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 15px;
+        }
+
+        .badge {
+            background: #e0e7ff;
+            color: var(--primary);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        /* Checkbox & Delete UI */
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .delete-btn {
+            background-color: transparent;
+            color: var(--danger);
+            border: 1px solid var(--danger);
+            padding: 6px 10px;
+        }
+
+        .delete-btn:hover {
+            background-color: var(--danger);
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .task-form {
+                grid-template-columns: 1fr;
+            }
+            .filters {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Smart Task Tracker</h1>
+
+        <form class="task-form" id="taskForm">
+            <input type="text" id="taskName" placeholder="What needs to be done?" required>
+            <input type="text" id="taskSubject" placeholder="Subject/Topic" required>
+            <input type="date" id="taskDate" required>
+            <button type="submit">Add Task</button>
+        </form>
+
+        <div class="filters">
+            <div class="filter-group">
+                <label for="statusFilter"><strong>Status:</strong></label>
+                <select id="statusFilter">
+                    <option value="all">All</option>
+                    <option value="pending">Pending</option>
+                    <option value="completed">Completed</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="subjectFilter"><strong>Subject:</strong></label>
+                <select id="subjectFilter">
+                    <option value="all">All Subjects</option>
+                    </select>
+            </div>
+        </div>
+
+        <ul class="task-list" id="taskList">
+            </ul>
+    </div>
+
+    <script>
+        // State management
+        let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+        // DOM Elements
+        const taskForm = document.getElementById('taskForm');
+        const taskList = document.getElementById('taskList');
+        const statusFilter = document.getElementById('statusFilter');
+        const subjectFilter = document.getElementById('subjectFilter');
+
+        // Initialize App
+        function init() {
+            updateSubjectDropdown();
+            renderTasks();
+        }
+
+        // Add New Task
+        taskForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const newTask = {
+                id: Date.now(),
+                name: document.getElementById('taskName').value,
+                subject: document.getElementById('taskSubject').value,
+                date: document.getElementById('taskDate').value,
+                completed: false
+            };
+
+            tasks.push(newTask);
+            saveData();
+            taskForm.reset();
+            updateSubjectDropdown();
+            renderTasks();
+        });
+
+        // Toggle Task Completion
+        function toggleTask(id) {
+            tasks = tasks.map(task => 
+                task.id === id ? { ...task, completed: !task.completed } : task
+            );
+            saveData();
+            renderTasks();
+        }
+
+        // Delete Task
+        function deleteTask(id) {
+            tasks = tasks.filter(task => task.id !== id);
+            saveData();
+            updateSubjectDropdown();
+            renderTasks();
+        }
+
+        // Update Dynamic Subject Filter
+        function updateSubjectDropdown() {
+            const subjects = [...new Set(tasks.map(task => task.subject))];
+            
+            // Keep the "All" option and add unique subjects
+            subjectFilter.innerHTML = '<option value="all">All Subjects</option>';
+            subjects.forEach(subject => {
+                const option = document.createElement('option');
+                option.value = subject;
+                option.textContent = subject;
+                subjectFilter.appendChild(option);
+            });
+        }
+
+        // Render Tasks to DOM
+        function renderTasks() {
+            const currentStatus = statusFilter.value;
+            const currentSubject = subjectFilter.value;
+
+            // Sort by date closest first
+            let filteredTasks = tasks.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+            // Apply Status Filter
+            if (currentStatus === 'completed') {
+                filteredTasks = filteredTasks.filter(t => t.completed);
+            } else if (currentStatus === 'pending') {
+                filteredTasks = filteredTasks.filter(t => !t.completed);
+            }
+
+            // Apply Subject Filter
+            if (currentSubject !== 'all') {
+                filteredTasks = filteredTasks.filter(t => t.subject === currentSubject);
+            }
+
+            // Generate HTML
+            taskList.innerHTML = '';
+            filteredTasks.forEach(task => {
+                const li = document.createElement('li');
+                li.className = `task-item ${task.completed ? 'completed' : ''}`;
+                
+                li.innerHTML = `
+                    <div class="checkbox-container">
+                        <input type="checkbox" ${task.completed ? 'checked' : ''} onchange="toggleTask(${task.id})" style="transform: scale(1.5);">
+                    </div>
+                    <div class="task-info">
+                        <div class="task-name">${task.name}</div>
+                        <div class="task-meta">
+                            <span class="badge">${task.subject}</span>
+                            <span>📅 ${task.date}</span>
+                        </div>
+                    </div>
+                    <button class="delete-btn" onclick="deleteTask(${task.id})">Delete</button>
+                `;
+                taskList.appendChild(li);
+            });
+        }
+
+        // Event Listeners for Filters
+        statusFilter.addEventListener('change', renderTasks);
+        subjectFilter.addEventListener('change', renderTasks);
+
+        // Save to LocalStorage
+        function saveData() {
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+
+        // Run on load
+        init();
+    </script>
+</body>
+</html>
