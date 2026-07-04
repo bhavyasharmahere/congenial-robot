@@ -11,7 +11,6 @@
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
   
-  <!-- Tailwind Custom Configuration -->
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -25,110 +24,195 @@
     }
   </script>
 
-  <!-- Custom Themes and Styles -->
+  <!-- Premium Dual Theme Engine Styles -->
   <style>
-    /* Theme definitions via CSS variables */
+    /* -----------------------------------------
+       EXECUTIVE THEME DEFINITIONS (DESIGN SYSTEMS)
+       ----------------------------------------- */
+    
+    /* Theme 1: Midnight Obsidian (Default Dark) */
     :root {
-      --bg-gradient: radial-gradient(circle at 50% 50%, #0f172a 0%, #020617 100%);
-      --glow-1: rgba(79, 70, 229, 0.15); /* Indigo */
-      --glow-2: rgba(6, 182, 212, 0.15); /* Cyan */
-      --card-bg: rgba(255, 255, 255, 0.03);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --card-hover: rgba(255, 255, 255, 0.06);
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --accent-grad-start: #818cf8;
-      --accent-grad-end: #22d3ee;
-      --pill-bg: rgba(15, 23, 42, 0.6);
+      --bg-gradient: radial-gradient(circle at 50% 50%, #080b13 0%, #010205 100%);
+      --glow-1: rgba(99, 102, 241, 0.22); 
+      --glow-2: rgba(168, 85, 247, 0.16); 
+      
+      --card-bg: rgba(17, 24, 39, 0.55);
+      --card-border: rgba(255, 255, 255, 0.06);
+      --card-hover: rgba(99, 102, 241, 0.12);
+      --card-shadow: rgba(0, 0, 0, 0.6);
+      
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      
+      --accent-primary: #6366f1;
+      --accent-secondary: #a78bfa;
+      --accent-gradient: linear-gradient(135deg, #818cf8 0%, #c084fc 100%);
+      
+      /* Semantic States (High Contrast on Dark) */
+      --status-comp-bg: rgba(16, 185, 129, 0.1);
+      --status-comp-text: #34d399;
+      --status-comp-border: rgba(16, 185, 129, 0.22);
+      
+      --status-part-bg: rgba(249, 115, 22, 0.12);
+      --status-part-text: #f97316; /* High Contrast Orange */
+      --status-part-border: rgba(249, 115, 22, 0.25);
+      
+      --status-miss-bg: rgba(239, 68, 68, 0.1);
+      --status-miss-text: #f87171;
+      --status-miss-border: rgba(239, 68, 68, 0.22);
+
+      --quick-inactive-bg: rgba(31, 41, 55, 0.35);
+      --quick-inactive-text: #6b7280;
+      --quick-inactive-hover: rgba(255, 255, 255, 0.08);
+
+      --pill-bg: rgba(17, 24, 39, 0.7);
+      --modal-bg: #090d16;
     }
 
-    /* Cyberpunk Theme */
-    html.theme-cyberpunk {
-      --bg-gradient: radial-gradient(circle at 50% 50%, #180018 0%, #050005 100%);
-      --glow-1: rgba(240, 46, 170, 0.2); /* Neon Pink */
-      --glow-2: rgba(0, 240, 255, 0.15); /* Neon Cyan */
-      --card-bg: rgba(255, 0, 128, 0.03);
-      --card-border: rgba(240, 46, 170, 0.15);
-      --card-hover: rgba(255, 0, 128, 0.07);
-      --text-main: #fdf2f8;
-      --text-muted: #f472b6;
-      --accent-grad-start: #f43f5e;
-      --accent-grad-end: #06b6d4;
-      --pill-bg: rgba(5, 0, 5, 0.8);
-    }
-
-    /* Forest Glow Theme */
-    html.theme-forest {
-      --bg-gradient: radial-gradient(circle at 50% 50%, #022c22 0%, #01120b 100%);
-      --glow-1: rgba(16, 185, 129, 0.15); /* Emerald */
-      --glow-2: rgba(34, 197, 94, 0.1);  /* Green */
-      --card-bg: rgba(255, 255, 255, 0.02);
-      --card-border: rgba(16, 185, 129, 0.1);
-      --card-hover: rgba(16, 185, 129, 0.05);
-      --text-main: #f0fdf4;
-      --text-muted: #86efac;
-      --accent-grad-start: #34d399;
-      --accent-grad-end: #4ade80;
-      --pill-bg: rgba(1, 18, 11, 0.7);
-    }
-
-    /* Frosted Glass Light Theme */
+    /* Theme 2: Alabaster Frost (Premium Light) */
     html.theme-light {
-      --bg-gradient: radial-gradient(circle at 50% 50%, #f1f5f9 0%, #e2e8f0 100%);
-      --glow-1: rgba(99, 102, 241, 0.08); /* Indigo */
-      --glow-2: rgba(6, 182, 212, 0.08);  /* Cyan */
-      --card-bg: rgba(255, 255, 255, 0.7);
-      --card-border: rgba(0, 0, 0, 0.06);
-      --card-hover: rgba(255, 255, 255, 0.9);
-      --text-main: #0f172a;
-      --text-muted: #475569;
-      --accent-grad-start: #4f46e5;
-      --accent-grad-end: #0891b2;
-      --pill-bg: rgba(255, 255, 255, 0.8);
+      --bg-gradient: radial-gradient(circle at 50% 50%, #f8fafc 0%, #e2e8f0 100%);
+      --glow-1: rgba(99, 102, 241, 0.14); 
+      --glow-2: rgba(59, 130, 246, 0.14);  
+      
+      --card-bg: rgba(255, 255, 255, 0.75);
+      --card-border: rgba(15, 23, 42, 0.08);
+      --card-hover: rgba(255, 255, 255, 0.98);
+      --card-shadow: rgba(148, 163, 184, 0.15);
+      
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      
+      --accent-primary: #4f46e5;
+      --accent-secondary: #3b82f6;
+      --accent-gradient: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+
+      /* Semantic States (Deep Rich Pigments on Light) */
+      --status-comp-bg: #ecfdf5;
+      --status-comp-text: #047857;
+      --status-comp-border: #a7f3d0;
+      
+      --status-part-bg: #fff7ed;
+      --status-part-text: #c2410c; 
+      --status-part-border: #fecaca;
+      
+      --status-miss-bg: #fef2f2;
+      --status-miss-text: #b91c1c;
+      --status-miss-border: #fecaca;
+
+      --quick-inactive-bg: #f1f5f9;
+      --quick-inactive-text: #94a3b8;
+      --quick-inactive-hover: #e2e8f0;
+
+      --pill-bg: rgba(255, 255, 255, 0.85);
+      --modal-bg: #ffffff;
     }
 
+    /* -----------------------------------------
+       EXQUISITE GLASSMORPHISM RENDERING
+       ----------------------------------------- */
     body {
       background: var(--bg-gradient);
-      color: var(--text-main);
-      transition: background 0.5s ease, color 0.3s ease;
+      color: var(--text-primary);
+      transition: background 0.6s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+    }
+
+    .theme-text-main {
+      color: var(--text-primary);
+    }
+
+    .theme-text-muted {
+      color: var(--text-secondary);
     }
 
     .glass-panel {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      box-shadow: 0 10px 40px -10px var(--card-shadow);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .glass-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      transition: all 0.3s ease;
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      box-shadow: 0 8px 30px -5px var(--card-shadow);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
     
     .glass-card:hover {
       background: var(--card-hover);
-      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -15px var(--card-shadow);
+    }
+
+    /* Ambient Drift Parallax Physics */
+    @keyframes orbit-drift-1 {
+      0%, 100% { transform: translate(0px, 0px) scale(1); }
+      50% { transform: translate(80px, -60px) scale(1.2); }
+    }
+    @keyframes orbit-drift-2 {
+      0%, 100% { transform: translate(0px, 0px) scale(1.15); }
+      50% { transform: translate(-80px, 60px) scale(0.85); }
+    }
+    .orbit-1 {
+      animation: orbit-drift-1 25s ease-in-out infinite;
+    }
+    .orbit-2 {
+      animation: orbit-drift-2 25s ease-in-out infinite;
     }
 
     .accent-gradient-text {
-      background: linear-gradient(135deg, var(--accent-grad-start) 0%, var(--accent-grad-end) 100%);
+      background: var(--accent-gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .accent-gradient-bg {
-      background: linear-gradient(135deg, var(--accent-grad-start) 0%, var(--accent-grad-end) 100%);
+      background: var(--accent-gradient);
     }
 
-    .dynamic-pill {
-      background: var(--pill-bg);
+    .modal-sheet {
+      background-color: var(--modal-bg);
+      box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6);
     }
 
-    /* Safe scrollbar */
+    /* Custom Color Map Semantic Badges */
+    .badge-comp {
+      background-color: var(--status-comp-bg);
+      color: var(--status-comp-text);
+      border: 1px solid var(--status-comp-border);
+    }
+    .badge-part {
+      background-color: var(--status-part-bg);
+      color: var(--status-part-text);
+      border: 1px solid var(--status-part-border);
+    }
+    .badge-miss {
+      background-color: var(--status-miss-bg);
+      color: var(--status-miss-text);
+      border: 1px solid var(--status-miss-border);
+    }
+
+    /* Interactive Status Transition Animations */
+    .btn-status-shift {
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Custom Dropdowns */
+    select.premium-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23818cf8' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><path d='m6 9 6 6 6-6'/></svg>");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      padding-right: 32px;
+    }
+
+    /* Safe scrollbars */
     ::-webkit-scrollbar {
       width: 8px;
     }
@@ -136,133 +220,195 @@
       background: transparent;
     }
     ::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.12);
       border-radius: 9999px;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.25);
     }
   </style>
 </head>
 <body class="min-h-screen relative overflow-x-hidden selection:bg-indigo-500/30">
 
-  <!-- Ambient Glow Effects -->
-  <div class="fixed inset-0 z-0 pointer-events-none">
-    <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full blur-[130px]" style="background-color: var(--glow-1);"></div>
-    <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[130px]" style="background-color: var(--glow-2);"></div>
+  <!-- Volumetric Floating Ambient Glows -->
+  <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+    <div id="ambient-glow-1" class="absolute top-[-15%] left-[-15%] w-[70%] h-[70%] rounded-full blur-[150px] orbit-1" style="background-color: var(--glow-1);"></div>
+    <div id="ambient-glow-2" class="absolute bottom-[-15%] right-[-15%] w-[70%] h-[70%] rounded-full blur-[150px] orbit-2" style="background-color: var(--glow-2);"></div>
   </div>
 
   <div class="relative z-10 max-w-7xl mx-auto p-4 sm:p-8">
     
-    <!-- TOP NAVBAR WITH THEME SELECTION & HEADER -->
+    <!-- TOP NAVIGATION -->
     <header class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-10 gap-6">
       <div>
-        <h1 class="text-4xl font-extrabold tracking-tight accent-gradient-text">
+        <h1 class="text-5xl font-black tracking-tight accent-gradient-text pb-1">
           Nexus Tracker
         </h1>
-        <p class="opacity-80 mt-1">Manage your academic journey and backlog with premium aesthetic controls.</p>
+        <p class="theme-text-muted mt-1 font-medium">Manage your academic journey and backlog with premium aesthetic controls.</p>
       </div>
       
       <div class="flex flex-wrap items-center gap-4 w-full lg:w-auto">
-        <!-- Theme Selector -->
-        <div class="flex items-center gap-2 glass-panel px-3 py-2 rounded-xl">
-          <span class="text-xs font-semibold uppercase tracking-wider opacity-60 mr-1 flex items-center gap-1">
-            <i data-lucide="palette" class="w-4 h-4"></i> Theme:
+        <!-- Professional Dual Theme Toggle -->
+        <div class="flex items-center gap-3 glass-panel px-4 py-2.5 rounded-2xl shadow-lg">
+          <span class="text-xs font-bold uppercase tracking-wider opacity-80 flex items-center gap-1.5">
+            <i data-lucide="sun" class="w-4 h-4 text-amber-500 block dark:hidden"></i>
+            <i data-lucide="moon" class="w-4 h-4 text-indigo-400 hidden dark:block"></i> Theme:
           </span>
-          <div class="flex gap-1">
-            <button onclick="setTheme('space')" class="w-6 h-6 rounded-full bg-indigo-600 border border-white/20" title="Deep Space"></button>
-            <button onclick="setTheme('cyberpunk')" class="w-6 h-6 rounded-full bg-pink-500 border border-white/20" title="Cyberpunk"></button>
-            <button onclick="setTheme('forest')" class="w-6 h-6 rounded-full bg-emerald-700 border border-white/20" title="Forest Glow"></button>
-            <button onclick="setTheme('light')" class="w-6 h-6 rounded-full bg-slate-200 border border-black/10" title="Glass Light"></button>
+          <div class="flex bg-slate-950/20 dark:bg-slate-950/50 p-1 rounded-xl border border-white/5 shadow-inner">
+            <button id="theme-toggle-dark" onclick="setTheme('space')" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all duration-300">
+              Midnight Dark
+            </button>
+            <button id="theme-toggle-light" onclick="setTheme('light')" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all duration-300">
+              Frosted Light
+            </button>
           </div>
         </div>
 
-        <!-- Add Record Button -->
+        <!-- Add Record Trigger -->
         <button 
           onclick="openAddModal()"
-          class="flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md rounded-xl transition-all duration-300 shadow-md hover:shadow-lg active:scale-95 ml-auto lg:ml-0"
+          class="flex items-center gap-2 px-6 py-3.5 bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md rounded-2xl transition-all duration-300 shadow-md hover:shadow-lg active:scale-95 ml-auto lg:ml-0 font-bold"
         >
           <i data-lucide="plus" class="w-5 h-5"></i>
-          <span class="font-semibold">Add Record</span>
+          <span>Add Record</span>
         </button>
       </div>
     </header>
 
-    <!-- DASHBOARD STATISTICS -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+    <!-- DASHBOARD METRIC CARDS -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
       
-      <!-- Card 1: Total Backlogs -->
+      <!-- Completed -->
       <div class="relative overflow-hidden glass-panel p-6 rounded-2xl shadow-xl flex justify-between items-center group">
         <div>
-          <p class="text-xs font-bold uppercase tracking-wider opacity-60 mb-1">Total Backlogs</p>
-          <h3 id="stat-backlogs" class="text-4xl font-black">4</h3>
+          <p class="text-xs font-bold uppercase tracking-wider opacity-70 mb-1">Completed Lectures</p>
+          <h3 id="stat-completed" class="text-4xl font-black" style="color: var(--status-comp-text);">2</h3>
         </div>
-        <div class="bg-indigo-500/10 p-4 rounded-full border border-indigo-500/20 text-indigo-400 group-hover:scale-110 transition-transform">
-          <i data-lucide="book-open" class="w-6 h-6"></i>
+        <div class="p-4 rounded-xl border group-hover:scale-110 transition-transform duration-300" style="background-color: var(--status-comp-bg); border-color: var(--status-comp-border); color: var(--status-comp-text);">
+          <i data-lucide="check-circle-2" class="w-6 h-6"></i>
         </div>
       </div>
 
-      <!-- Card 2: Classes Missed -->
+      <!-- Partially Completed -->
       <div class="relative overflow-hidden glass-panel p-6 rounded-2xl shadow-xl flex justify-between items-center group">
         <div>
-          <p class="text-xs font-bold uppercase tracking-wider opacity-60 mb-1">Classes Missed</p>
-          <h3 id="stat-missed" class="text-4xl font-black">2</h3>
+          <p class="text-xs font-bold uppercase tracking-wider opacity-70 mb-1">Partially Completed</p>
+          <h3 id="stat-partial" class="text-4xl font-black" style="color: var(--status-part-text);">1</h3>
         </div>
-        <div class="bg-rose-500/10 p-4 rounded-full border border-rose-500/20 text-rose-400 group-hover:scale-110 transition-transform">
-          <i data-lucide="x-circle" class="w-6 h-6"></i>
-        </div>
-      </div>
-
-      <!-- Card 3: Partially Completed -->
-      <div class="relative overflow-hidden glass-panel p-6 rounded-2xl shadow-xl flex justify-between items-center group">
-        <div>
-          <p class="text-xs font-bold uppercase tracking-wider opacity-60 mb-1">Partially Completed</p>
-          <h3 id="stat-partial" class="text-4xl font-black">1</h3>
-        </div>
-        <div class="bg-amber-500/10 p-4 rounded-full border border-amber-500/20 text-amber-400 group-hover:scale-110 transition-transform">
+        <div class="p-4 rounded-xl border group-hover:scale-110 transition-transform duration-300" style="background-color: var(--status-part-bg); border-color: var(--status-part-border); color: var(--status-part-text);">
           <i data-lucide="alert-circle" class="w-6 h-6"></i>
+        </div>
+      </div>
+
+      <!-- Classes Missed -->
+      <div class="relative overflow-hidden glass-panel p-6 rounded-2xl shadow-xl flex justify-between items-center group">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-wider opacity-70 mb-1">Classes Missed</p>
+          <h3 id="stat-missed" class="text-4xl font-black" style="color: var(--status-miss-text);">2</h3>
+        </div>
+        <div class="p-4 rounded-xl border group-hover:scale-110 transition-transform duration-300" style="background-color: var(--status-miss-bg); border-color: var(--status-miss-border); color: var(--status-miss-text);">
+          <i data-lucide="x-circle" class="w-6 h-6"></i>
         </div>
       </div>
 
     </div>
 
-    <!-- MAIN VIEW CONTROLS -->
+    <!-- SYLLABUS HEALTH & INDEX PROGRESS BAR -->
+    <div class="glass-panel p-6 rounded-2xl mb-8">
+      <div class="flex justify-between items-center mb-3">
+        <h4 class="text-sm font-bold uppercase tracking-wider opacity-90 flex items-center gap-2">
+          <i data-lucide="activity" class="w-4 h-4 animate-pulse"></i> Course Completion Index
+        </h4>
+        <span id="completion-ratio-text" class="text-xs font-bold opacity-80">Syllabus Health Ratio</span>
+      </div>
+      
+      <!-- Multi-segment progressive bar with perfect orange representation -->
+      <div class="w-full h-5 bg-slate-950/60 rounded-full overflow-hidden flex border border-white/10 shadow-inner p-0.5">
+        <!-- Completed Segment -->
+        <div id="bar-completed" class="h-full transition-all duration-750 cubic-bezier(0.16, 1, 0.3, 1) rounded-l-full" style="width: 40%; background-color: var(--status-comp-text);" title="Completed"></div>
+        <!-- Partially Completed Segment -->
+        <div id="bar-partial" class="h-full transition-all duration-750 cubic-bezier(0.16, 1, 0.3, 1)" style="width: 20%; background-color: var(--status-part-text);" title="Partially Completed"></div>
+        <!-- Missed Segment -->
+        <div id="bar-missed" class="h-full transition-all duration-750 cubic-bezier(0.16, 1, 0.3, 1) rounded-r-full" style="width: 40%; background-color: var(--status-miss-text);" title="Missed"></div>
+      </div>
+
+      <!-- Informative dynamic legend -->
+      <div class="grid grid-cols-3 gap-2 mt-4 text-xs font-semibold text-center">
+        <div class="flex items-center justify-center gap-1.5" style="color: var(--status-comp-text);">
+          <span class="w-3 h-3 rounded-full shadow-md" style="background-color: var(--status-comp-text);"></span>
+          <span>Completed: <strong id="pct-completed" class="text-sm">40%</strong></span>
+        </div>
+        <div class="flex items-center justify-center gap-1.5" style="color: var(--status-part-text);">
+          <span class="w-3 h-3 rounded-full shadow-md" style="background-color: var(--status-part-text);"></span>
+          <span>Partial: <strong id="pct-partial" class="text-sm">20%</strong></span>
+        </div>
+        <div class="flex items-center justify-center gap-1.5" style="color: var(--status-miss-text);">
+          <span class="w-3 h-3 rounded-full shadow-md" style="background-color: var(--status-miss-text);"></span>
+          <span>Missed: <strong id="pct-missed" class="text-sm">40%</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN TIMELINE VIEW CONTROLS -->
     <div class="flex flex-col lg:flex-row justify-between items-center gap-6 p-4 mb-8 glass-panel rounded-2xl">
       
-      <!-- Date Navigator -->
-      <div class="flex items-center gap-4">
-        <button onclick="adjustDate(-1)" class="p-2 hover:bg-white/10 rounded-lg transition-colors">
+      <!-- Date Navigation (Featuring dropdown month-year leap controls) -->
+      <div class="flex items-center gap-3">
+        <button onclick="adjustDate(-1)" class="p-2 hover:bg-white/10 rounded-xl transition-all active:scale-95">
           <i data-lucide="chevron-left" class="w-5 h-5"></i>
         </button>
-        <div class="flex items-center gap-3">
-          <i data-lucide="calendar" class="w-5 h-5 text-indigo-400"></i>
-          <span id="date-label" class="text-lg font-bold w-48 text-center select-none">
-            May 2026
-          </span>
+        
+        <!-- Premium Selector dropdown wrapper -->
+        <div class="flex items-center gap-1.5 bg-slate-900/40 dark:bg-slate-950/40 px-3 py-1.5 rounded-xl border border-white/5 shadow-inner">
+          <i data-lucide="calendar" class="w-4 h-4 text-indigo-400 mr-1 select-none"></i>
+          
+          <select id="jump-month" onchange="handleLeapJump()" class="premium-select bg-transparent text-sm font-bold text-slate-100 dark:text-slate-100 focus:outline-none cursor-pointer">
+            <option value="0" class="bg-slate-900 text-white">January</option>
+            <option value="1" class="bg-slate-900 text-white">February</option>
+            <option value="2" class="bg-slate-900 text-white">March</option>
+            <option value="3" class="bg-slate-900 text-white">April</option>
+            <option value="4" class="bg-slate-900 text-white">May</option>
+            <option value="5" class="bg-slate-900 text-white">June</option>
+            <option value="6" class="bg-slate-900 text-white">July</option>
+            <option value="7" class="bg-slate-900 text-white">August</option>
+            <option value="8" class="bg-slate-900 text-white">September</option>
+            <option value="9" class="bg-slate-900 text-white">October</option>
+            <option value="10" class="bg-slate-900 text-white">November</option>
+            <option value="11" class="bg-slate-900 text-white">December</option>
+          </select>
+
+          <select id="jump-year" onchange="handleLeapJump()" class="premium-select bg-transparent text-sm font-bold text-slate-100 dark:text-slate-100 focus:outline-none cursor-pointer">
+            <option value="2024" class="bg-slate-900 text-white">2024</option>
+            <option value="2025" class="bg-slate-900 text-white">2025</option>
+            <option value="2026" class="bg-slate-900 text-white">2026</option>
+            <option value="2027" class="bg-slate-900 text-white">2027</option>
+            <option value="2028" class="bg-slate-900 text-white">2028</option>
+          </select>
         </div>
-        <button onclick="adjustDate(1)" class="p-2 hover:bg-white/10 rounded-lg transition-colors">
+
+        <button onclick="adjustDate(1)" class="p-2 hover:bg-white/10 rounded-xl transition-all active:scale-95">
           <i data-lucide="chevron-right" class="w-5 h-5"></i>
         </button>
       </div>
 
-      <!-- Settings & View Options -->
+      <!-- Filters & Configurations -->
       <div class="flex flex-wrap items-center gap-4 w-full lg:w-auto justify-end">
-        <!-- View Mode (Week / Month) -->
-        <div class="flex dynamic-pill p-1 rounded-xl border border-white/5 shadow-inner">
-          <button id="btn-view-week" onclick="setViewMode('week')" class="px-4 py-1.5 rounded-lg text-sm font-medium transition-all text-slate-400">
+        <!-- View Mode: Week/Month -->
+        <div class="flex bg-slate-950/20 dark:bg-slate-950/40 p-1 rounded-xl border border-white/5 shadow-inner">
+          <button id="btn-view-week" onclick="setViewMode('week')" class="px-4 py-2 rounded-lg text-sm font-bold transition-all text-slate-400">
             Week
           </button>
-          <button id="btn-view-month" onclick="setViewMode('month')" class="px-4 py-1.5 rounded-lg text-sm font-medium transition-all bg-white/15 text-white">
+          <button id="btn-view-month" onclick="setViewMode('month')" class="px-4 py-2 rounded-lg text-sm font-bold transition-all bg-white/10 text-white shadow-sm">
             Month
           </button>
         </div>
 
-        <!-- Grouping Controls (Date / Subject) -->
-        <div class="flex dynamic-pill p-1 rounded-xl border border-white/5 shadow-inner">
-          <button id="btn-group-date" onclick="setGrouping('date')" class="flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-medium transition-all bg-indigo-500/30 text-white">
+        <!-- Grouping Controls: Date/Subject -->
+        <div class="flex bg-slate-950/20 dark:bg-slate-950/40 p-1 rounded-xl border border-white/5 shadow-inner">
+          <button id="btn-group-date" onclick="setGrouping('date')" class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all bg-indigo-500/30 text-white shadow-sm">
             <i data-lucide="calendar" class="w-4 h-4"></i> Date
           </button>
-          <button id="btn-group-subject" onclick="setGrouping('subject')" class="flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-medium transition-all text-slate-400">
+          <button id="btn-group-subject" onclick="setGrouping('subject')" class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all text-slate-400">
             <i data-lucide="layout-grid" class="w-4 h-4"></i> Subject
           </button>
         </div>
@@ -270,22 +416,22 @@
 
     </div>
 
-    <!-- CLASSES DYNAMIC CONTAINER -->
+    <!-- TIMELINE LIST CONTAINER -->
     <div id="classes-timeline-container" class="space-y-10 mb-20">
-      <!-- Injected Dynamically by JavaScript -->
+      <!-- Injected Dynamically by JS Engine -->
     </div>
 
   </div>
 
-  <!-- MODAL: ADD / EDIT CLASS RECORD -->
+  <!-- MODAL: ADD & DETAILED EDIT WINDOW -->
   <div id="record-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden animate-fade-in">
     <!-- Overlay -->
-    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeModal()"></div>
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-md" onclick="closeModal()"></div>
     
-    <!-- Dialog Panel -->
-    <div class="relative bg-slate-900 border border-white/15 w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden z-10">
-      <div class="p-6 border-b border-white/10 flex justify-between items-center bg-slate-950/55">
-        <h2 id="modal-title" class="text-xl font-extrabold text-white">Add Class Record</h2>
+    <!-- Dialog Form Sheet -->
+    <div class="relative modal-sheet border border-white/15 w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden z-10 transition-all duration-300">
+      <div class="p-6 border-b border-white/10 flex justify-between items-center bg-slate-950/20">
+        <h2 id="modal-title" class="text-xl font-extrabold theme-text-main">Add Class Record</h2>
         <button onclick="closeModal()" class="text-slate-400 hover:text-white transition-colors">
           <i data-lucide="x-circle" class="w-6 h-6"></i>
         </button>
@@ -298,90 +444,90 @@
           
           <!-- Subject -->
           <div>
-            <label class="block text-sm font-medium text-slate-300 mb-2">Subject</label>
+            <label class="block text-sm font-bold theme-text-muted mb-2">Subject</label>
             <input 
               required type="text" id="form-subject"
               placeholder="e.g., Physics"
-              class="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all placeholder:text-slate-600"
+              class="w-full bg-slate-950/40 border border-white/15 rounded-xl px-4 py-3 theme-text-main focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all placeholder:opacity-30 font-semibold"
             />
           </div>
 
           <!-- Date -->
           <div>
-            <label class="block text-sm font-medium text-slate-300 mb-2">Date</label>
+            <label class="block text-sm font-bold theme-text-muted mb-2">Date</label>
             <input 
               required type="date" id="form-date"
-              class="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all [color-scheme:dark]"
+              class="w-full bg-slate-950/40 border border-white/15 rounded-xl px-4 py-3 theme-text-main focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all [color-scheme:dark] font-semibold"
             />
           </div>
 
           <!-- Lecture Name -->
           <div class="md:col-span-2">
-            <label class="block text-sm font-medium text-slate-300 mb-2">Lecture Name / Chapter</label>
+            <label class="block text-sm font-bold theme-text-muted mb-2">Lecture Name / Chapter</label>
             <input 
               required type="text" id="form-lecture-name"
               placeholder="e.g., Revision and Doubt Class"
-              class="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all placeholder:text-slate-600"
+              class="w-full bg-slate-950/40 border border-white/15 rounded-xl px-4 py-3 theme-text-main focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all placeholder:opacity-30 font-semibold"
             />
           </div>
 
           <!-- Topic Description -->
           <div class="md:col-span-2">
-            <label class="block text-sm font-medium text-slate-300 mb-2">Topic Overview</label>
+            <label class="block text-sm font-bold theme-text-muted mb-2">Topic Overview</label>
             <input 
               type="text" id="form-topic"
               placeholder="e.g., Kinematics, Calculus Fundamentals"
-              class="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all placeholder:text-slate-600"
+              class="w-full bg-slate-950/40 border border-white/15 rounded-xl px-4 py-3 theme-text-main focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all placeholder:opacity-30 font-semibold"
             />
           </div>
 
           <!-- Start Time -->
           <div>
-            <label class="block text-sm font-medium text-slate-300 mb-2">Start Time</label>
+            <label class="block text-sm font-bold theme-text-muted mb-2">Start Time</label>
             <input 
               required type="text" id="form-time-start"
               placeholder="e.g., 04:30 PM"
-              class="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all placeholder:text-slate-600"
+              class="w-full bg-slate-950/40 border border-white/15 rounded-xl px-4 py-3 theme-text-main focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all placeholder:opacity-30 font-semibold"
             />
           </div>
 
           <!-- End Time -->
           <div>
-            <label class="block text-sm font-medium text-slate-300 mb-2">End Time</label>
+            <label class="block text-sm font-bold theme-text-muted mb-2">End Time</label>
             <input 
               required type="text" id="form-time-end"
               placeholder="e.g., 05:45 PM"
-              class="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all placeholder:text-slate-600"
+              class="w-full bg-slate-950/40 border border-white/15 rounded-xl px-4 py-3 theme-text-main focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all placeholder:opacity-30 font-semibold"
             />
           </div>
 
           <!-- Status Selector -->
           <div class="md:col-span-2">
-            <label class="block text-sm font-medium text-slate-300 mb-2">Attendance Status</label>
+            <label class="block text-sm font-bold theme-text-muted mb-2">Attendance Status</label>
             <div class="grid grid-cols-3 gap-3">
-              <label id="lbl-status-attended" onclick="selectFormStatus('Attended')" class="cursor-pointer border border-white/10 bg-slate-950 rounded-xl py-3 text-center font-bold text-slate-400 transition-all">
-                Attended
+              <label id="lbl-status-completed" onclick="selectFormStatus('Completed')" class="cursor-pointer border border-white/10 bg-slate-950/40 rounded-xl py-3 text-center font-bold text-slate-400 transition-all">
+                Completed
               </label>
-              <label id="lbl-status-missed" onclick="selectFormStatus('Missed')" class="cursor-pointer border border-white/10 bg-slate-950 rounded-xl py-3 text-center font-bold text-slate-400 transition-all">
-                Missed
-              </label>
-              <label id="lbl-status-partial" onclick="selectFormStatus('Partial')" class="cursor-pointer border border-white/10 bg-slate-950 rounded-xl py-3 text-center font-bold text-slate-400 transition-all">
+              <label id="lbl-status-partial" onclick="selectFormStatus('Partially Completed')" class="cursor-pointer border border-white/10 bg-slate-950/40 rounded-xl py-3 text-center font-bold text-slate-400 transition-all">
                 Partial
               </label>
+              <label id="lbl-status-missed" onclick="selectFormStatus('Missed')" class="cursor-pointer border border-white/10 bg-slate-950/40 rounded-xl py-3 text-center font-bold text-slate-400 transition-all">
+                Missed
+              </label>
             </div>
-            <input type="hidden" id="form-status" value="Attended">
+            <input type="hidden" id="form-status" value="Completed">
           </div>
 
-          <!-- Conditional: Topics Missed for Partial status -->
+          <!-- Conditional: Topics Missed Form -->
           <div id="partial-topics-container" class="md:col-span-2 hidden animate-in fade-in slide-in-from-top-2 duration-200">
-            <label class="block text-sm font-medium text-amber-400 mb-2 flex items-center gap-2">
+            <label class="block text-sm font-bold mb-2 flex items-center gap-2" style="color: var(--status-part-text);">
               <i data-lucide="alert-circle" class="w-4 h-4"></i> Topics Missed / To Revisit
             </label>
             <textarea 
               id="form-missed-topics"
               placeholder="Enter details on the topics or sections you missed or need to recap..."
               rows="3"
-              class="w-full bg-amber-500/5 border border-amber-500/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all placeholder:text-amber-800/40"
+              class="w-full bg-slate-950/40 border border-white/15 rounded-xl px-4 py-3 theme-text-main focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all placeholder:opacity-30 font-semibold"
             ></textarea>
           </div>
 
@@ -391,7 +537,7 @@
         <div class="pt-6 border-t border-white/10 flex justify-end gap-3 mt-4">
           <button 
             type="button" onclick="closeModal()"
-            class="px-6 py-2.5 rounded-xl font-semibold text-slate-400 hover:bg-white/5 hover:text-white transition-colors"
+            class="px-6 py-2.5 rounded-xl font-bold text-slate-400 hover:bg-white/5 transition-all"
           >
             Cancel
           </button>
@@ -406,13 +552,33 @@
     </div>
   </div>
 
-  <!-- CORE JS LOGIC -->
+  <!-- ULTRA-PREMIUM CONFIRMATION SHEET MODAL -->
+  <div id="confirm-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden animate-fade-in">
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-md" onclick="closeConfirmModal()"></div>
+    <div class="relative modal-sheet border border-white/15 w-full max-w-md rounded-2xl shadow-2xl p-6 z-10 text-center animate-in zoom-in-95 duration-200">
+      <div class="w-16 h-16 rounded-full mx-auto flex items-center justify-center mb-4" style="background-color: var(--status-miss-bg); color: var(--status-miss-text); border: 1px solid var(--status-miss-border);">
+        <i data-lucide="trash-2" class="w-8 h-8"></i>
+      </div>
+      <h3 class="text-xl font-extrabold theme-text-main mb-2">Delete Record</h3>
+      <p class="theme-text-muted text-sm mb-6">Are you sure you want to delete this class record? This action cannot be undone.</p>
+      <div class="flex justify-center gap-3">
+        <button onclick="closeConfirmModal()" class="px-5 py-2.5 rounded-xl font-bold bg-white/5 hover:bg-white/10 text-slate-300 transition-all">
+          Cancel
+        </button>
+        <button id="confirm-delete-btn" class="px-5 py-2.5 rounded-xl font-bold text-white bg-red-650 hover:bg-red-750 shadow-lg transition-all active:scale-95">
+          Yes, Delete
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CORE APPLICATION INTERACTIVE ENGINE -->
   <script>
-    // --- APP DATA ---
+    // --- SEED DATA WITH UPDATED TEMPORAL DISTRIBUTION (TO FIT JULY 2026 CONTEXT) ---
     let classes = [
       {
         id: '1',
-        date: '2026-05-16',
+        date: '2026-07-16',
         subject: 'Maths',
         lectureName: 'Revision And Doubt Class',
         topic: 'Calculus Fundamentals',
@@ -423,18 +589,18 @@
       },
       {
         id: '2',
-        date: '2026-05-16',
+        date: '2026-07-16',
         subject: 'Chemistry',
         lectureName: 'Revision And Doubt Class',
         topic: 'Organic Chemistry Basics',
         timeStart: '06:00 PM',
         timeEnd: '07:15 PM',
-        status: 'Attended',
+        status: 'Completed',
         missedTopics: ''
       },
       {
         id: '3',
-        date: '2026-05-16',
+        date: '2026-07-16',
         subject: 'Physics',
         lectureName: 'Revision And Doubt Class',
         topic: 'Kinematics',
@@ -445,97 +611,127 @@
       },
       {
         id: '4',
-        date: '2026-05-15',
+        date: '2026-07-15',
         subject: 'Biology',
         lectureName: 'Cellular Biology',
         topic: 'Cell Division',
         timeStart: '10:00 AM',
         timeEnd: '11:30 AM',
-        status: 'Partial',
+        status: 'Partially Completed',
         missedTopics: 'Meiosis phases, Spindle fiber formation'
       },
       {
         id: '5',
-        date: '2026-05-12',
+        date: '2026-07-12',
         subject: 'Maths',
         lectureName: 'Integration',
         topic: 'Definite Integrals',
         timeStart: '04:30 PM',
         timeEnd: '05:45 PM',
-        status: 'Attended',
+        status: 'Completed',
         missedTopics: ''
       }
     ];
 
-    // Check LocalStorage for existing records
-    if(localStorage.getItem('nexus_classes')) {
+    // Read Persistent Storage
+    if(localStorage.getItem('nexus_classes_pro')) {
       try {
-        classes = JSON.parse(localStorage.getItem('nexus_classes'));
+        const stored = JSON.parse(localStorage.getItem('nexus_classes_pro'));
+        if(Array.isArray(stored)) {
+          classes = stored;
+        }
       } catch (e) {
-        console.error("Localstorage parsing error, using default data.");
+        console.error("Storage corrupt, seeding defaults.");
       }
     }
 
-    // --- STATE MANAGER ---
-    let currentTheme = localStorage.getItem('nexus_theme') || 'space';
+    // --- APPLICATION STATE CONTAINER ---
+    let currentTheme = localStorage.getItem('nexus_theme_pro') || 'space';
     let groupBy = 'date'; // 'date' | 'subject'
     let viewMode = 'month'; // 'month' | 'week'
-    let currentDate = new Date(2026, 4, 16); // May 16, 2026
+    let pendingDeleteId = null;
 
-    // --- INIT APP ---
+    // --- SMART INITIAL DATE CALCULATION ENGINE ---
+    function calculateInitialDate() {
+      const outstanding = classes.filter(c => c.status === 'Missed' || c.status === 'Partially Completed');
+      if (outstanding.length > 0) {
+        // Sort to get the absolute newest incomplete record
+        const sorted = [...outstanding].sort((a, b) => new Date(b.date) - new Date(a.date));
+        return new Date(sorted[0].date);
+      }
+      return new Date(); // Fallback to current browser month
+    }
+
+    let currentDate = calculateInitialDate();
+
+    // --- INIT PIPELINE ---
     document.addEventListener("DOMContentLoaded", () => {
       setTheme(currentTheme);
+      updateJumpDropdowns();
       renderApp();
     });
 
-    // --- THEME SWITCHER ---
+    // --- MASTER THEME ENGINE (DUAL DESIGN PORTFOLIO) ---
     function setTheme(theme) {
       currentTheme = theme;
-      localStorage.setItem('nexus_theme', theme);
+      localStorage.setItem('nexus_theme_pro', theme);
       
       const html = document.documentElement;
-      html.className = ''; // Reset class list
+      html.className = ''; // Reset CSS bindings
       
-      if (theme === 'cyberpunk') {
-        html.classList.add('dark', 'theme-cyberpunk');
-      } else if (theme === 'forest') {
-        html.classList.add('dark', 'theme-forest');
-      } else if (theme === 'light') {
+      const darkToggle = document.getElementById('theme-toggle-dark');
+      const lightToggle = document.getElementById('theme-toggle-light');
+
+      if (theme === 'light') {
         html.classList.add('theme-light');
+        if (darkToggle) darkToggle.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold text-slate-500 transition-all duration-300 hover:text-slate-900";
+        if (lightToggle) lightToggle.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold bg-indigo-600 text-white shadow-md transition-all duration-300";
       } else {
-        html.classList.add('dark'); // 'space' theme is the default dark
+        html.classList.add('dark'); // Midnight Obsidian
+        if (darkToggle) darkToggle.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold bg-indigo-600 text-white shadow-md transition-all duration-300";
+        if (lightToggle) lightToggle.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold text-slate-400 transition-all duration-300 hover:text-slate-100";
       }
+      
+      // Update ambient background coordinates
+      setTimeout(() => {
+        const glow1 = document.getElementById('ambient-glow-1');
+        const glow2 = document.getElementById('ambient-glow-2');
+        if (glow1 && glow2) {
+          glow1.style.backgroundColor = 'var(--glow-1)';
+          glow2.style.backgroundColor = 'var(--glow-2)';
+        }
+      }, 50);
+
+      if(classes) renderApp();
     }
 
-    // --- STATE CHANGER TRIGGERS ---
+    // --- STATE CONFIGURATORS ---
     function setGrouping(mode) {
       groupBy = mode;
-      
       const btnDate = document.getElementById('btn-group-date');
       const btnSub = document.getElementById('btn-group-subject');
       
       if (mode === 'date') {
-        btnDate.className = 'flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-medium transition-all bg-indigo-500/30 text-white';
-        btnSub.className = 'flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-medium transition-all text-slate-400';
+        btnDate.className = 'flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all bg-indigo-500/30 text-white shadow-sm';
+        btnSub.className = 'flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all text-slate-400 hover:text-slate-200 dark:hover:text-slate-100';
       } else {
-        btnSub.className = 'flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-medium transition-all bg-indigo-500/30 text-white';
-        btnDate.className = 'flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-medium transition-all text-slate-400';
+        btnSub.className = 'flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all bg-indigo-500/30 text-white shadow-sm';
+        btnDate.className = 'flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all text-slate-400 hover:text-slate-200 dark:hover:text-slate-100';
       }
       renderApp();
     }
 
     function setViewMode(mode) {
       viewMode = mode;
-      
       const btnWeek = document.getElementById('btn-view-week');
       const btnMonth = document.getElementById('btn-view-month');
       
       if (mode === 'week') {
-        btnWeek.className = 'px-4 py-1.5 rounded-lg text-sm font-medium transition-all bg-white/15 text-white';
-        btnMonth.className = 'px-4 py-1.5 rounded-lg text-sm font-medium transition-all text-slate-400';
+        btnWeek.className = 'px-4 py-2 rounded-lg text-sm font-bold transition-all bg-white/10 text-white shadow-sm';
+        btnMonth.className = 'px-4 py-2 rounded-lg text-sm font-bold transition-all text-slate-400 hover:text-slate-200 dark:hover:text-slate-100';
       } else {
-        btnMonth.className = 'px-4 py-1.5 rounded-lg text-sm font-medium transition-all bg-white/15 text-white';
-        btnWeek.className = 'px-4 py-1.5 rounded-lg text-sm font-medium transition-all text-slate-400';
+        btnMonth.className = 'px-4 py-2 rounded-lg text-sm font-bold transition-all bg-white/10 text-white shadow-sm';
+        btnWeek.className = 'px-4 py-2 rounded-lg text-sm font-bold transition-all text-slate-400 hover:text-slate-200 dark:hover:text-slate-100';
       }
       renderApp();
     }
@@ -546,45 +742,100 @@
       } else {
         currentDate.setDate(currentDate.getDate() + (direction * 7));
       }
+      updateJumpDropdowns();
       renderApp();
     }
 
-    function syncLocalStorage() {
-      localStorage.setItem('nexus_classes', JSON.stringify(classes));
+    function handleLeapJump() {
+      const monthSelect = document.getElementById('jump-month');
+      const yearSelect = document.getElementById('jump-year');
+      
+      const targetMonth = parseInt(monthSelect.value);
+      const targetYear = parseInt(yearSelect.value);
+      
+      currentDate.setMonth(targetMonth);
+      currentDate.setFullYear(targetYear);
+      renderApp();
     }
 
-    // --- RENDERING PIPELINE ---
-    function renderApp() {
-      // 1. Update stats
-      const totalMissed = classes.filter(c => c.status === 'Missed').length;
-      const totalPartial = classes.filter(c => c.status === 'Partial').length;
+    function updateJumpDropdowns() {
+      const monthSelect = document.getElementById('jump-month');
+      const yearSelect = document.getElementById('jump-year');
       
-      document.getElementById('stat-backlogs').textContent = totalMissed + totalPartial;
-      document.getElementById('stat-missed').textContent = totalMissed;
-      document.getElementById('stat-partial').textContent = totalPartial;
+      if (monthSelect) monthSelect.value = currentDate.getMonth();
+      if (yearSelect) yearSelect.value = currentDate.getFullYear();
+    }
 
-      // 2. Update navigation label
-      const dateLabel = document.getElementById('date-label');
-      if (viewMode === 'month') {
-        dateLabel.textContent = currentDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+    function syncLocalStorage() {
+      localStorage.setItem('nexus_classes_pro', JSON.stringify(classes));
+    }
+
+    function setClassStatus(id, newStatus) {
+      classes = classes.map(c => {
+        if (c.id === id) {
+          c.status = newStatus;
+          if (newStatus === 'Partially Completed' && !c.missedTopics) {
+            c.missedTopics = 'Recap required (Click edit icon to detail)';
+          }
+        }
+        return c;
+      });
+      syncLocalStorage();
+      renderApp();
+    }
+
+    // --- PRESENTATION RENDERING PIPELINE ---
+    function renderApp() {
+      // 1. Calculations & Dashboard sync
+      const totalCompleted = classes.filter(c => c.status === 'Completed').length;
+      const totalPartial = classes.filter(c => c.status === 'Partially Completed').length;
+      const totalMissed = classes.filter(c => c.status === 'Missed').length;
+      const grandTotal = classes.length;
+
+      document.getElementById('stat-completed').textContent = totalCompleted;
+      document.getElementById('stat-partial').textContent = totalPartial;
+      document.getElementById('stat-missed').textContent = totalMissed;
+
+      // 2. Syllabus Health Ratio Sync
+      if (grandTotal > 0) {
+        const pctCompleted = Math.round((totalCompleted / grandTotal) * 100);
+        const pctPartial = Math.round((totalPartial / grandTotal) * 100);
+        const pctMissed = 100 - (pctCompleted + pctPartial);
+
+        document.getElementById('bar-completed').style.width = `${pctCompleted}%`;
+        document.getElementById('bar-partial').style.width = `${pctPartial}%`;
+        document.getElementById('bar-missed').style.width = `${pctMissed}%`;
+
+        document.getElementById('pct-completed').textContent = `${pctCompleted}% (${totalCompleted})`;
+        document.getElementById('pct-partial').textContent = `${pctPartial}% (${totalPartial})`;
+        document.getElementById('pct-missed').textContent = `${pctMissed}% (${totalMissed})`;
+
+        document.getElementById('completion-ratio-text').textContent = `Index Ratio: ${totalCompleted}/${grandTotal} Lectures Finalized`;
       } else {
-        // Find week boundary
-        const startOfWeek = new Date(currentDate);
-        dateLabel.textContent = `Week of ${startOfWeek.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`;
+        document.getElementById('bar-completed').style.width = `0%`;
+        document.getElementById('bar-partial').style.width = `0%`;
+        document.getElementById('bar-missed').style.width = `0%`;
+        document.getElementById('pct-completed').textContent = '0%';
+        document.getElementById('pct-partial').textContent = '0%';
+        document.getElementById('pct-missed').textContent = '0%';
+        document.getElementById('completion-ratio-text').textContent = '0 lectures logged';
       }
 
-      // 3. Filter classes
+      // Update selectors state
+      updateJumpDropdowns();
+
+      // 4. Temporal Filters
       const filtered = classes.filter(c => {
         const classDate = new Date(c.date);
         if (viewMode === 'month') {
           return classDate.getMonth() === currentDate.getMonth() && classDate.getFullYear() === currentDate.getFullYear();
         } else {
           const diff = Math.abs(classDate - currentDate) / (1000 * 60 * 60 * 24);
-          return diff <= 3; // Approx 1 week window
+          return diff <= 3; // Week window mapping
         }
       });
 
-      // 4. Group classes
+      // 5. Structure Hierarchies
       const groups = {};
       filtered.forEach(c => {
         const key = groupBy === 'date' ? c.date : c.subject;
@@ -592,13 +843,11 @@
         groups[key].push(c);
       });
 
-      // Sort group headers
       const sortedKeys = Object.keys(groups).sort((a, b) => {
         if (groupBy === 'date') return new Date(b) - new Date(a);
         return a.localeCompare(b);
       });
 
-      // 5. Render list layout
       const container = document.getElementById('classes-timeline-container');
       container.innerHTML = '';
 
@@ -606,7 +855,7 @@
         container.innerHTML = `
           <div class="text-center py-20 opacity-50">
             <i data-lucide="book-open" class="mx-auto mb-4 w-12 h-12"></i>
-            <p class="text-lg">No records found for this timeframe.</p>
+            <p class="text-lg font-semibold">No lectures tracked for this frame.</p>
           </div>
         `;
         lucide.createIcons();
@@ -616,7 +865,6 @@
       sortedKeys.forEach(groupKey => {
         const groupItems = groups[groupKey];
         
-        // Define label
         let titleLabel = groupKey;
         let iconName = 'layout-grid';
         if (groupBy === 'date') {
@@ -630,74 +878,104 @@
         
         let headerHtml = `
           <h2 class="text-2xl font-bold mb-6 flex items-center gap-3 border-b border-white/10 pb-3">
-            <i data-lucide="${iconName}" class="w-6 h-6 text-indigo-400"></i> ${titleLabel}
-            <span class="text-xs font-normal bg-white/10 px-3 py-1 rounded-full ml-2">
-              ${groupItems.length} Class${groupItems.length > 1 ? 'es' : ''}
+            <i data-lucide="${iconName}" class="w-6 h-6 text-indigo-455"></i> ${titleLabel}
+            <span class="text-xs font-bold bg-white/10 px-3 py-1 rounded-full ml-2 theme-text-main">
+              ${groupItems.length} Lecture${groupItems.length > 1 ? 's' : ''}
             </span>
           </h2>
         `;
 
-        let cardsHtml = `<div class="grid grid-cols-1 xl:grid-cols-2 gap-4">`;
+        let cardsHtml = `<div class="grid grid-cols-1 xl:grid-cols-2 gap-5">`;
 
         groupItems.forEach(item => {
-          let statusColorClass = 'text-emerald-400 border-emerald-500/20 bg-emerald-500/10';
+          let statusColorClass = 'badge-comp';
           let statusIcon = 'check-circle-2';
           if (item.status === 'Missed') {
-            statusColorClass = 'text-rose-400 border-rose-500/20 bg-rose-500/10';
+            statusColorClass = 'badge-miss';
             statusIcon = 'x-circle';
-          } else if (item.status === 'Partial') {
-            statusColorClass = 'text-amber-400 border-amber-500/20 bg-amber-500/10';
+          } else if (item.status === 'Partially Completed') {
+            statusColorClass = 'badge-part';
             statusIcon = 'alert-circle';
           }
 
           let partialDetailsHtml = '';
-          if (item.status === 'Partial') {
+          if (item.status === 'Partially Completed') {
             partialDetailsHtml = `
-              <div class="mt-4 p-3 bg-amber-500/10 border border-amber-500/20 rounded-xl">
-                <p class="text-xs font-bold text-amber-500 mb-1 uppercase tracking-wider flex items-center gap-1">
-                  <i data-lucide="alert-circle" class="w-4.5 h-4.5"></i> Topics to catch up on:
+              <div class="mt-4 p-4 rounded-xl relative overflow-hidden" style="background-color: var(--status-part-bg); border: 1px solid var(--status-part-border);">
+                <div class="absolute left-0 top-0 bottom-0 w-1" style="background-color: var(--status-part-text);"></div>
+                <p class="text-xs font-bold mb-1 uppercase tracking-wider flex items-center gap-1.5" style="color: var(--status-part-text);">
+                  <i data-lucide="alert-circle" class="w-4 h-4 animate-bounce"></i> Topics Missed / Outstanding:
                 </p>
-                <p class="text-sm text-amber-200/80 italic">
-                  ${item.missedTopics || 'None specified yet. Edit this card to list missed topics.'}
+                <p class="text-sm font-semibold italic pl-1.5 theme-text-main">
+                  ${item.missedTopics || 'No detailed topics specified. Edit card to set.'}
                 </p>
               </div>
             `;
           }
 
+          // Generate dynamic theme-adaptive toggles with perfect matching light & dark color architectures
+          let compBtnActive = item.status === 'Completed' ? 'style="background-color: var(--status-comp-bg); color: var(--status-comp-text); border: 1px solid var(--status-comp-border); font-weight: 700;"' : 'style="background-color: var(--quick-inactive-bg); color: var(--quick-inactive-text);"';
+          let partBtnActive = item.status === 'Partially Completed' ? 'style="background-color: var(--status-part-bg); color: var(--status-part-text); border: 1px solid var(--status-part-border); font-weight: 700;"' : 'style="background-color: var(--quick-inactive-bg); color: var(--quick-inactive-text);"';
+          let missBtnActive = item.status === 'Missed' ? 'style="background-color: var(--status-miss-bg); color: var(--status-miss-text); border: 1px solid var(--status-miss-border); font-weight: 700;"' : 'style="background-color: var(--quick-inactive-bg); color: var(--quick-inactive-text);"';
+
           cardsHtml += `
-            <div class="group relative glass-card p-5 rounded-2xl flex flex-col md:flex-row gap-5 items-start md:items-center">
+            <div class="group relative glass-card p-6 rounded-2xl flex flex-col md:flex-row gap-5 items-start md:items-center">
               
-              <!-- Left: Time / Subject Tag -->
+              <!-- Left Panel Metadata -->
               <div class="flex-shrink-0 flex flex-col gap-2 min-w-[140px]">
-                <div class="flex items-center gap-2 opacity-80 font-medium">
-                  <i data-lucide="clock" class="w-4 h-4 text-indigo-400"></i>
+                <div class="flex items-center gap-2 opacity-90 font-bold">
+                  <i data-lucide="clock" class="w-4.5 h-4.5 text-indigo-400"></i>
                   <span class="text-sm">${item.timeStart} - ${item.timeEnd}</span>
                 </div>
-                <div class="inline-flex max-w-fit items-center px-3 py-1 rounded-md bg-slate-900/60 border border-white/5 text-xs font-semibold tracking-wide text-cyan-300 uppercase">
+                <div class="inline-flex max-w-fit items-center px-3 py-1.5 rounded-lg bg-slate-950/20 border border-white/10 text-xs font-black tracking-widest text-cyan-550 uppercase shadow-inner">
                   ${item.subject}
                 </div>
               </div>
 
-              <!-- Center Details -->
+              <!-- Content Hub -->
               <div class="flex-grow w-full md:w-auto">
-                <h3 class="text-lg font-bold text-white mb-1">${item.lectureName}</h3>
-                <p class="opacity-70 text-sm">${item.topic || 'No specific topic listed'}</p>
+                <h3 class="text-lg font-extrabold theme-text-main mb-1 tracking-tight">${item.lectureName}</h3>
+                <p class="theme-text-muted text-sm font-medium">${item.topic || 'No specific topic mapped'}</p>
                 ${partialDetailsHtml}
+
+                <!-- Premium Real-time Shift Deck -->
+                <div class="mt-4 flex flex-wrap items-center gap-2 border-t border-white/5 pt-3">
+                  <span class="text-[10px] font-black uppercase tracking-widest opacity-50 mr-1.5 flex items-center gap-1">
+                    <i data-lucide="shuffle" class="w-3 h-3"></i> Quick State:
+                  </span>
+                  <button 
+                    onclick="setClassStatus('${item.id}', 'Completed')" 
+                    ${compBtnActive} class="text-xs px-3 py-1.5 rounded-lg transition-all duration-300 btn-status-shift active:scale-95 border border-transparent"
+                  >
+                    Completed
+                  </button>
+                  <button 
+                    onclick="setClassStatus('${item.id}', 'Partially Completed')" 
+                    ${partBtnActive} class="text-xs px-3 py-1.5 rounded-lg transition-all duration-300 btn-status-shift active:scale-95 border border-transparent"
+                  >
+                    Partial
+                  </button>
+                  <button 
+                    onclick="setClassStatus('${item.id}', 'Missed')" 
+                    ${missBtnActive} class="text-xs px-3 py-1.5 rounded-lg transition-all duration-300 btn-status-shift active:scale-95 border border-transparent"
+                  >
+                    Missed
+                  </button>
+                </div>
               </div>
 
-              <!-- Right Actions and Badge -->
+              <!-- Right: Interactive Actions & Badging -->
               <div class="flex md:flex-col items-center md:items-end justify-between w-full md:w-auto gap-4 mt-4 md:mt-0">
-                <div class="flex items-center gap-2 px-4 py-2 rounded-full border ${statusColorClass} font-semibold text-sm">
+                <div class="flex items-center gap-2 px-4 py-2 rounded-full border ${statusColorClass} font-bold text-sm shadow-md">
                   <i data-lucide="${statusIcon}" class="w-4.5 h-4.5"></i>
-                  <span>Class ${item.status}</span>
+                  <span>${item.status === 'Completed' ? 'Completed' : item.status === 'Partially Completed' ? 'Partial' : 'Missed'}</span>
                 </div>
                 
-                <!-- Quick Controls -->
-                <div class="flex gap-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
-                  <button onclick="openEditModal('${item.id}')" class="p-2 bg-slate-800 hover:bg-indigo-600 rounded-lg text-slate-400 hover:text-white transition-colors">
+                <div class="flex gap-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300">
+                  <button onclick="openEditModal('${item.id}')" class="p-2.5 bg-slate-550/10 border border-white/5 hover:bg-indigo-600 rounded-xl text-slate-400 hover:text-white transition-all shadow-md" title="Detailed Specifications">
                     <i data-lucide="edit-3" class="w-4 h-4"></i>
                   </button>
-                  <button onclick="deleteRecord('${item.id}')" class="p-2 bg-slate-800 hover:bg-rose-600 rounded-lg text-slate-400 hover:text-white transition-colors">
+                  <button onclick="deleteRecordPrompt('${item.id}')" class="p-2.5 bg-slate-550/10 border border-white/5 hover:bg-rose-650 rounded-xl text-slate-400 hover:text-white transition-all shadow-md" title="Delete record">
                     <i data-lucide="trash-2" class="w-4 h-4"></i>
                   </button>
                 </div>
@@ -712,16 +990,14 @@
         container.appendChild(groupSection);
       });
 
-      // Fire Lucide to render newly dynamically generated tags
       lucide.createIcons();
     }
 
-    // --- MODAL & FORM OPERATIONS ---
+    // --- MODAL CONTROLS ---
     function openAddModal() {
       document.getElementById('modal-title').textContent = 'Add Class Record';
       document.getElementById('edit-id').value = '';
       
-      // Default placeholder values for form
       document.getElementById('form-date').value = new Date().toISOString().split('T')[0];
       document.getElementById('form-subject').value = '';
       document.getElementById('form-lecture-name').value = '';
@@ -730,7 +1006,7 @@
       document.getElementById('form-time-end').value = '05:45 PM';
       document.getElementById('form-missed-topics').value = '';
       
-      selectFormStatus('Attended');
+      selectFormStatus('Completed');
       
       const modal = document.getElementById('record-modal');
       modal.classList.remove('hidden');
@@ -762,26 +1038,42 @@
     }
 
     function selectFormStatus(status) {
+      if (status === 'Attended') status = 'Completed';
+      if (status === 'Partial') status = 'Partially Completed';
+
       document.getElementById('form-status').value = status;
       
-      const attended = document.getElementById('lbl-status-attended');
+      const completed = document.getElementById('lbl-status-completed');
       const missed = document.getElementById('lbl-status-missed');
       const partial = document.getElementById('lbl-status-partial');
       const partialBlock = document.getElementById('partial-topics-container');
 
-      // Reset all
-      attended.className = "cursor-pointer border border-white/10 bg-slate-950 rounded-xl py-3 text-center font-bold text-slate-400 transition-all";
-      missed.className = "cursor-pointer border border-white/10 bg-slate-950 rounded-xl py-3 text-center font-bold text-slate-400 transition-all";
-      partial.className = "cursor-pointer border border-white/10 bg-slate-950 rounded-xl py-3 text-center font-bold text-slate-400 transition-all";
+      // Reset static style configurations
+      completed.className = "cursor-pointer border border-white/10 bg-slate-950/40 rounded-xl py-3 text-center font-bold text-slate-400 transition-all";
+      missed.className = "cursor-pointer border border-white/10 bg-slate-950/40 rounded-xl py-3 text-center font-bold text-slate-400 transition-all";
+      partial.className = "cursor-pointer border border-white/10 bg-slate-950/40 rounded-xl py-3 text-center font-bold text-slate-400 transition-all";
+      
+      completed.style = "";
+      missed.style = "";
+      partial.style = "";
       partialBlock.classList.add('hidden');
 
-      // Set Selected style
-      if(status === 'Attended') {
-        attended.className = "cursor-pointer border border-emerald-500 bg-emerald-500/20 rounded-xl py-3 text-center font-bold text-emerald-400 transition-all";
+      // Bind dynamic styles directly to local variables
+      if(status === 'Completed') {
+        completed.className = "cursor-pointer border rounded-xl py-3 text-center font-bold shadow-md transition-all";
+        completed.style.backgroundColor = "var(--status-comp-bg)";
+        completed.style.borderColor = "var(--status-comp-border)";
+        completed.style.color = "var(--status-comp-text)";
       } else if (status === 'Missed') {
-        missed.className = "cursor-pointer border border-rose-500 bg-rose-500/20 rounded-xl py-3 text-center font-bold text-rose-400 transition-all";
-      } else if (status === 'Partial') {
-        partial.className = "cursor-pointer border border-amber-500 bg-amber-500/20 rounded-xl py-3 text-center font-bold text-amber-400 transition-all";
+        missed.className = "cursor-pointer border rounded-xl py-3 text-center font-bold shadow-md transition-all";
+        missed.style.backgroundColor = "var(--status-miss-bg)";
+        missed.style.borderColor = "var(--status-miss-border)";
+        missed.style.color = "var(--status-miss-text)";
+      } else if (status === 'Partially Completed') {
+        partial.className = "cursor-pointer border rounded-xl py-3 text-center font-bold shadow-md transition-all";
+        partial.style.backgroundColor = "var(--status-part-bg)";
+        partial.style.borderColor = "var(--status-part-border)";
+        partial.style.color = "var(--status-part-text)";
         partialBlock.classList.remove('hidden');
       }
     }
@@ -802,10 +1094,8 @@
       };
 
       if (editId) {
-        // Edit Mode
         classes = classes.map(c => c.id === editId ? { ...classData, id: editId } : c);
       } else {
-        // Add Mode
         classes.push({
           ...classData,
           id: Date.now().toString()
@@ -817,12 +1107,24 @@
       renderApp();
     }
 
-    function deleteRecord(id) {
-      if (confirm('Are you sure you want to delete this class record?')) {
-        classes = classes.filter(c => c.id !== id);
+    // --- DIALOG SYSTEMS ---
+    function deleteRecordPrompt(id) {
+      pendingDeleteId = id;
+      const confirmModal = document.getElementById('confirm-modal');
+      confirmModal.classList.remove('hidden');
+      
+      const deleteBtn = document.getElementById('confirm-delete-btn');
+      deleteBtn.onclick = () => {
+        classes = classes.filter(c => c.id !== pendingDeleteId);
         syncLocalStorage();
+        closeConfirmModal();
         renderApp();
-      }
+      };
+    }
+
+    function closeConfirmModal() {
+      document.getElementById('confirm-modal').classList.add('hidden');
+      pendingDeleteId = null;
     }
   </script>
 </body>
